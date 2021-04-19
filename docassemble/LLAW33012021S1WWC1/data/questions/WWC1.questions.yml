@@ -1,0 +1,83 @@
+# We put all the question block into this file.  We do 
+# this simply to be organised.  We want to separate the
+# actual questions we ask from the logic flow of the program
+# itself (which is in the main file).  That way it makes
+# the logic flow easier to identify as it's not
+# cluttered with questions
+#
+# NOTE:  This file should not contain any mandatory
+# question blocks
+---
+# full name and award 
+question: Details
+fields:
+  - Full name: [insert variable]
+  - What is your award: [insert variable]
+---
+# Work status
+# how many hours do you work a week
+# how much do you get paid per hour
+question: Work Status
+fields:
+  - What type of employee are you?: [insert variable]
+  choices:
+    - Casual
+    - Part-Time
+    - Full-Time
+  - How many hours do you work a week?: [insert variable]
+  - How much do you get paid per hour?: [insert variable]
+    datatype: currency
+---
+# allowances
+# are you getting allowances
+# if yes, how much are you getting in allowances?
+question: Allowances
+fields:
+  - Are you getting allowances?: [insert varaible]
+    datatype: radio
+    choices:
+      - Yes
+      - No
+  - How much are you getting in allowances?: [insert variable]
+    datatype: currency
+    show if:
+      variable: [allowance variable]
+      is: 'Yes'
+---
+# penalty rates
+# are you getting penalty rates
+# if yes, what are you getting paid per hour on penalty rate days?
+question: Penalty Rates
+fields:
+  - Are you being paid penalty rates?: [insert varaible]
+    datatype: radio
+    choices:
+      - Yes
+      - No
+  - What are you getting paid per hour on penalty rate dates?: [insert variable]
+    datatype: currency
+    show if:
+      variable: [penalty variable]
+      is: 'Yes'
+---
+# over time
+# are you being paid overtime?
+# how much overtime are you doing?
+# how much do you get paid in overtime?
+question: Overtime
+fields:
+  - Are you being paid overtime?: [insert varaible]
+    datatype: radio
+    choices:
+      - Yes
+      - No
+  - How much overtime (in hours) are you doing?: [insert variable]
+    show if:
+      variable: [overtime variable]
+      is: 'Yes'
+  - How much do you get paid in overtime?: [insert variable]
+    datatype: currency
+    show if:
+      variable: [overtime variable]
+      is: 'Yes'
+---

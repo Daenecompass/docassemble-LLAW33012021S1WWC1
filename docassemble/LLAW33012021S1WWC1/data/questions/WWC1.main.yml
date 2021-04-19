@@ -1,0 +1,24 @@
+# This is the main file that includes: the welcome screen; legal disclaimer; mandatory question blocks; potentially event: function
+---
+include:
+  - WWC1.questions.yml
+  - WWC1.endpoints.yml
+  - WWC1.casual.yml
+---
+mandatory: True
+question: WWC Money Claim Form
+subquestion: |
+  Welcome to the WWC Money Claim Form application.
+  
+  [add text here] 
+  
+  ***Disclaimer:***  
+  **This advice is not to be taken as legal advice and is not a substitute
+  for you seeking independent legal advice.**
+
+  If you continue you accept these terms.
+buttons:
+  - I agree and wish to continue: continue
+  - I do not agree and wish to exit: exit
+   url: https://wwcsa.org.au/
+---
