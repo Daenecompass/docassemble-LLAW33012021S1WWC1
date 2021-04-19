@@ -1,0 +1,35 @@
+# summary document available for dl and email with link
+# to the SAET forms page 
+---
+objects:
+  - endpoints: DADict
+---
+event: endpoint['']
+question: Your Document is Ready!
+subquestion: |
+  
+
+  Thank you for using this application ____. 
+  
+  We have collected the following data from you:
+  
+  Information|Your Input
+  -----------|----------
+               | ${ }
+  
+  Below is a downloadable docx file of ___. 
+  
+  *include message re sending a copy of the doc to the relevant WWC industrial officer as well as a copy to their own email address
+
+attachment:
+  - name: WWC1 Summary Document
+    docx template file: [name of file].docx
+    valid formats:
+      - docx # Emma wants it available as word doc so that it can be edited
+buttons:
+  - I wish to restart: restart
+  - Exit: exit
+    url: 
+    
+# Emma wants both a link to the WWC website as well as the SAET forms webpage
+---
