@@ -12,13 +12,25 @@
 question: Details
 fields:
   - Full name: [insert variable]
-  - Have you consulted a Industrial worker?
-  %if no
+  - Have you consulted an Industrial worker at WWC?: [insert variable]
+    datatype: radio
+    choices:
+      - Yes
+      - No
+  # no answer will be sent to different end point directing them back to the WWC and 
+  # how they can contact WWC
   - Do you know your award?: [insert variable]
-  ##if the answer is no they are sent to another endpoint
-  %if yes
+    datatype: radio
+    choices:
+      - Yes
+      - No
+  # if the answer is no they are sent to another endpoint explaining where to get award
+  # info from, the fact it's updated every year, etc just basic info so they can
+  # understand it a bit more
   - What is your award: [insert variable]
-  
+    show if:
+      variable: [award known variable]
+      is: 'Yes'
 ---
 # Work status
 # how many hours do you work a week
