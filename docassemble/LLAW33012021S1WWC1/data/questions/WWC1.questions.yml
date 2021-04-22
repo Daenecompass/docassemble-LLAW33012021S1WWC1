@@ -12,7 +12,13 @@
 question: Details
 fields:
   - Full name: [insert variable]
+  - Have you consulted a Industrial worker?
+  %if no
+  - Do you know your award?: [insert variable]
+  ##if the answer is no they are sent to another endpoint
+  %if yes
   - What is your award: [insert variable]
+  
 ---
 # Work status
 # how many hours do you work a week
