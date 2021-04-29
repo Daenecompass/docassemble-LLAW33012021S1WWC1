@@ -98,6 +98,6 @@ fields:
   - How much do you get paid in overtime?: amount_overtime
     datatype: currency
     show if:
-      variable: paid_overtime or hours_overtime
+      variable: paid_overtime
       is: 'Yes'
 ---
