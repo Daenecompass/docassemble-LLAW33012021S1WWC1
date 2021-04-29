@@ -11,15 +11,16 @@
 # full name and award 
 question: Details
 fields:
-  - Full name: [insert variable]
-  - Have you consulted an Industrial worker at WWC?: [insert variable]
+  - First Name: First_Name
+  - Last Name: Last_Name
+  - Have you consulted an Industrial worker at WWC?: Consult_WWC
     datatype: radio
     choices:
       - Yes
       - No
   # no answer will be sent to different end point directing them back to the WWC and 
   # how they can contact WWC
-  - Do you know your award?: [insert variable]
+  - Do you know your award?: award_known
     datatype: radio
     choices:
       - Yes
@@ -27,9 +28,9 @@ fields:
   # if the answer is no they are sent to another endpoint explaining where to get award
   # info from, the fact it's updated every year, etc just basic info so they can
   # understand it a bit more
-  - What is your award: [insert variable]
+  - What is your award: the_award
     show if:
-      variable: [award known variable]
+      variable: award_known
       is: 'Yes'
 ---
 # Work status
@@ -37,13 +38,14 @@ fields:
 # how much do you get paid per hour
 question: Work Status
 fields:
-  - What type of employee are you?: [insert variable]
+  - What type of employee are you?: work_status
   choices:
     - Casual
     - Part-Time
     - Full-Time
-  - How many hours do you work a week?: [insert variable]
-  - How much do you get paid per hour?: [insert variable]
+# Show if they click part-time or full-time because this will be different for casual 
+  - How many hours do you work a week?: hours_week
+  - How much do you get paid per hour?: paid_hour
     datatype: currency
 ---
 # allowances
@@ -51,15 +53,15 @@ fields:
 # if yes, how much are you getting in allowances?
 question: Allowances
 fields:
-  - Are you getting allowances?: [insert varaible]
+  - Are you getting allowances?: what_allowance
     datatype: radio
     choices:
       - Yes
       - No
-  - How much are you getting in allowances?: [insert variable]
+  - How much are you getting in allowances?: amount_allowance
     datatype: currency
     show if:
-      variable: [allowance variable]
+      variable: what_allowance
       is: 'Yes'
 ---
 # penalty rates
@@ -67,15 +69,15 @@ fields:
 # if yes, what are you getting paid per hour on penalty rate days?
 question: Penalty Rates
 fields:
-  - Are you being paid penalty rates?: [insert varaible]
+  - Are you being paid penalty rates?: penalty_rates 
     datatype: radio
     choices:
       - Yes
       - No
-  - What are you getting paid per hour on penalty rate dates?: [insert variable]
+  - What are you getting paid per hour on penalty rate dates?: paid_penalty_rates 
     datatype: currency
     show if:
-      variable: [penalty variable]
+      variable: penalty_rates
       is: 'Yes'
 ---
 # over time
@@ -84,18 +86,18 @@ fields:
 # how much do you get paid in overtime?
 question: Overtime
 fields:
-  - Are you being paid overtime?: [insert varaible]
+  - Are you being paid overtime?: paid_overtime
     datatype: radio
     choices:
       - Yes
       - No
-  - How much overtime (in hours) are you doing?: [insert variable]
+  - How much overtime (in hours) are you doing?: hours_overtime
     show if:
-      variable: [overtime variable]
+      variable: paid_overtime
       is: 'Yes'
-  - How much do you get paid in overtime?: [insert variable]
+  - How much do you get paid in overtime?: amount_overtime
     datatype: currency
     show if:
-      variable: [overtime variable]
+      variable: paid_overtime or hours_overtime
       is: 'Yes'
 ---
