@@ -5,4 +5,22 @@
 # refer to FUSA's way of scheduling their events - obvs will have to be modified to suit
 # our scenario
 ---
+objects:
+ - casualHours: DAList
+---
+question: Casual Work
+subquestion: |
+  Insert how to use this aspect
+  
+# i want it to recurse onto one page
+
+fields:
+ - Week Starting: casualHours[i].week
+ - Hours Worked: casualHours[i].hours
+
+subquestion: |
+  Would you like to add more weeks?
+yesno: casualHours.there_is_another
+
+
 ---
