@@ -7,6 +7,8 @@
 #
 # NOTE:  This file should not contain any mandatory
 # question blocks
+# checklist: name; consult with WWC; award known/unknown; type of employee; regular hours; hours per week; $ per hour; over time rates + award; penalty rates + award; allowances + award; public holiday rates + award; leave entitlement + leave owing; other + award if applicable.
+# 
 ---
 # full name and award 
 question: Details
@@ -39,46 +41,29 @@ fields:
 question: Work Status
 fields:
   - What type of employee are you?: work_status
-  choices:
-    - Casual
-    - Part-Time
-    - Full-Time
-# Show if they click part-time or full-time because this will be different for casual 
+    datatype: radio
+    choices:
+      - Casual
+      - Part-Time
+      - Full-Time
+---
+question: Regular Hours
+fields:
+  - Do you work regular hours?: regular_hours
+    datatype: radio
+    choices:
+      - Yes
+      - No
+    show if:
+      variable: work_status
+      is: 'Casual'
+---
+# not sure how to tie Casual back into this if regular is yes 
+question: Working Hours
+fields:
   - How many hours do you work a week?: hours_week
   - How much do you get paid per hour?: paid_hour
     datatype: currency
----
-# allowances
-# are you getting allowances
-# if yes, how much are you getting in allowances?
-question: Allowances
-fields:
-  - Are you getting allowances?: what_allowance
-    datatype: radio
-    choices:
-      - Yes
-      - No
-  - How much are you getting in allowances?: amount_allowance
-    datatype: currency
-    show if:
-      variable: what_allowance
-      is: 'Yes'
----
-# penalty rates
-# are you getting penalty rates
-# if yes, what are you getting paid per hour on penalty rate days?
-question: Penalty Rates
-fields:
-  - Are you being paid penalty rates?: penalty_rates 
-    datatype: radio
-    choices:
-      - Yes
-      - No
-  - What are you getting paid per hour on penalty rate dates?: paid_penalty_rates 
-    datatype: currency
-    show if:
-      variable: penalty_rates
-      is: 'Yes'
 ---
 # over time
 # are you being paid overtime?
@@ -99,5 +84,107 @@ fields:
     datatype: currency
     show if:
       variable: paid_overtime
+      is: 'Yes'
+  - What are the Overtime Rates according to your relevant award?: overtime_award
+    datatype: currency
+    show if:
+      variable: paid_overtime
+      is: 'Yes'
+---
+# penalty rates
+# are you getting penalty rates
+# if yes, what are you getting paid per hour on penalty rate days?
+question: Penalty Rates
+fields:
+  - Are you being paid penalty rates?: penalty_rates 
+    datatype: radio
+    choices:
+      - Yes
+      - No
+  - What penalty rates are you receiving?: paid_penalty_rates 
+    datatype: currency
+    show if:
+      variable: penalty_rates
+      is: 'Yes'
+  - What are the penalty rates according to your relevant award?: penalty_award
+    datatype: currency
+    show if:
+      variable: penalty_rates
+      is: 'Yes'
+---
+# allowances
+# are you getting allowances
+# if yes, how much are you getting in allowances?
+question: Allowances
+fields:
+  - Are you getting paid any allowances?: what_allowance
+    datatype: radio
+    choices:
+      - Yes
+      - No
+  - What allowances are you receiving?: amount_allowance
+    datatype: currency
+    show if:
+      variable: what_allowance
+      is: 'Yes'
+  - What are the allowances according to your relevant award?: allowance_award
+    datatype: currency
+    show if:
+      variable: what_allowance
+      is: 'Yes'
+---
+question: Public Holiday 
+fields:
+  - Are you getting paid any public holiday rates?: public_holiday_rates
+    datatype: radio
+    choices:
+      - Yes
+      - No
+  - What public holiday rates are you being paid?: paid_public_holiday_rates
+    datatype: currency
+    show if:
+      variable: public_holiday_rates
+      is: 'Yes'
+  - What are the public holiday rates according to your relevant award?: public_holiday_award
+    datatype: currency
+    show if:
+      variable: public_holiday_rates
+      is: 'Yes'
+---
+question: Leave Entitlement
+fields:
+  - Are you entitled to leave?: leave_entitlement
+    datatype: radio
+    choices:
+      - Yes
+      - No
+  - Do you have leave owing to you?: leave_owing
+    datatype: radio
+    choices:
+      - Yes
+      - No
+    show if:
+      variable: leave_entitlement
+      is: 'Yes'
+  - How much leave is owed to you?: leave_owed
+    datatype: currency
+    show if:
+      variable: leave_owing
+      is: 'Yes'
+---
+question: Other
+fields:
+  - Are you getting paid any other type of payment that has not already been specified?: other_payment
+    datatype: radio
+    choices:
+      - Yes
+      - No
+  - Please provide information on the other type of payment: other_payment_info
+    show if:
+      variable: other_payment
+      is: 'Yes'
+  - What is the amount received from this other type of payment?: other_payment_amount
+    show if:
+      variable: other_payment
       is: 'Yes'
 ---
