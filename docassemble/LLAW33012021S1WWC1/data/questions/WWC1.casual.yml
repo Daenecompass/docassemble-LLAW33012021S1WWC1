@@ -19,8 +19,7 @@ fields:
  - Hours Worked: casualHours[i].hours
 
 subquestion: |
-  Would you like to add more weeks?
+  Would you like to add another week?
 yesno: casualHours.there_is_another
-
 
 ---
