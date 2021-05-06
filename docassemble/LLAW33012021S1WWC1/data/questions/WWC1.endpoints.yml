@@ -16,15 +16,18 @@ subquestion: |
   First Name|${first_name}
   Last Name|${last_name}
   Consulted an Industrial Worker at WWC|${consult_WWC}
-  The award|${the_award}
+  Name of award|${the_award}
   Employee Status|${work_status}
-  Allowance|${what_allowance}
+  % if work_status == 'Casual':
+  Regular hours|${regular_hours}
+  % endif
   How many hours worked|${hours_week}
   Amount per hour|${paid_hour}
   Hours in Overtime|$(hours_overtime}
-  Overtime Rates in Award|${paid_overtime}
+  Amount of Overtime|${amount_overtime}
+  Overtime Rates in Award|${overtime_award}
   The penalty rates|${paid_penalty_rates}
-  Award Penalty Rates|${penalty_rates}
+  Award Penalty Rates|${penalty_award}
   
   
   Below is a downloadable docx file of ___. 

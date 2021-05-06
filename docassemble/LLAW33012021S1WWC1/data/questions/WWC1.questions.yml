@@ -157,6 +157,10 @@ fields:
       variable: public_holiday_rates
       is: 'Yes'
 ---
+Show if: 
+  variable: work_status
+  is: 'Full-Time or Part-Time'
+    
 question: Leave Entitlement
 fields:
   - Are you entitled to leave?: leave_entitlement
