@@ -23,14 +23,36 @@ subquestion: |
   % endif
   How many hours worked|${hours_week}
   Amount per hour|${paid_hour}
+  % if paid_overtime == 'Yes':
   Hours in Overtime|$(hours_overtime}
   Amount of Overtime|${amount_overtime}
   Overtime Rates in Award|${overtime_award}
+  % endif
+  % if penalty_rates == 'Yes':
   The penalty rates|${paid_penalty_rates}
   Award Penalty Rates|${penalty_award}
+  % endif
+  % if what_allowance == 'Yes':
+  The Allowance Amount|${amount_allowance}
+  Award Allowance Amount|${allowance_award}
+  % endif
+  % if public_holiday_rates == 'Yes':
+  Amount of Public Holiday Rates|${paid_public_holiday_rates}
+  Public Holiday Rates in Award|${public_holiday_award}
+  % endif
+  % if work_status == 'Full-Time' or 'Part-Time':
+  % if leave_entitlement == 'Yes':
+  % if leave_owing == 'Yes':
+  How much leave is owed|${leave_owed}
+  % endif
+  % endif
+  % endif
+  % if other_payment == 'Yes':
+  Other Payment Type|${other_payment_info}
+  The amount of other payment|${other_payment_amount}
+  % endif
   
-  
-  Below is a downloadable docx file of ___. 
+  Below is a downloadable docx file of WWC Money Claim Form. 
   
   *include message re sending a copy of the doc to the relevant WWC industrial officer as well as a copy to their own email address
 

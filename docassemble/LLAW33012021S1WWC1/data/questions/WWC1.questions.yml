@@ -8,7 +8,6 @@
 # NOTE:  This file should not contain any mandatory
 # question blocks
 # checklist: name; consult with WWC; award known/unknown; type of employee; regular hours; hours per week; $ per hour; over time rates + award; penalty rates + award; allowances + award; public holiday rates + award; leave entitlement + leave owing; other + award if applicable.
-# 
 ---
 # full name and award 
 question: Details
@@ -47,6 +46,10 @@ fields:
       - Part-Time
       - Full-Time
 ---
+show if:
+      variable: work_status
+      is: 'Casual'
+      
 question: Regular Hours
 fields:
   - Do you work regular hours?: regular_hours
@@ -54,9 +57,6 @@ fields:
     choices:
       - Yes
       - No
-    show if:
-      variable: work_status
-      is: 'Casual'
 ---
 # not sure how to tie Casual back into this if regular is yes 
 question: Working Hours
@@ -70,10 +70,8 @@ fields:
 # how much overtime are you doing?
 # how much do you get paid in overtime?
 question: Overtime
-subquestion: |
-  Overtime is when you work beyond any ordinary hours, or outside the agreed number of hours.
 fields:
-  - Do you ever work overtime?: paid_overtime
+  - Are you being paid overtime?: paid_overtime
     datatype: radio
     choices:
       - Yes
@@ -87,7 +85,7 @@ fields:
     show if:
       variable: paid_overtime
       is: 'Yes'
-  - According to your relevant award, how much should you be getting paid in overtime?: overtime_award
+  - What are the Overtime Rates according to your relevant award?: overtime_award
     datatype: currency
     show if:
       variable: paid_overtime
@@ -97,20 +95,18 @@ fields:
 # are you getting penalty rates
 # if yes, what are you getting paid per hour on penalty rate days?
 question: Penalty Rates
-subquestion: |
-  Penalty rates means shifts you might work on Sundays, early mornings, or late at night.
 fields:
-  - Are you paid penalty rates?: penalty_rates 
+  - Are you being paid penalty rates?: penalty_rates 
     datatype: radio
     choices:
       - Yes
       - No
-  - If you are paid penalty rates, how much are you paid for those shifts?: paid_penalty_rates 
+  - What penalty rates are you receiving?: paid_penalty_rates 
     datatype: currency
     show if:
       variable: penalty_rates
       is: 'Yes'
-  - According to your relevant award how much should be paid for penalty rates?: penalty_award
+  - What are the penalty rates according to your relevant award?: penalty_award
     datatype: currency
     show if:
       variable: penalty_rates
@@ -121,7 +117,7 @@ fields:
 # if yes, how much are you getting in allowances?
 question: Allowances
 fields:
-  - Are you being paid any allowances?: what_allowance
+  - Are you getting paid any allowances?: what_allowance
     datatype: radio
     choices:
       - Yes
@@ -138,15 +134,13 @@ fields:
       is: 'Yes'
 ---
 question: Public Holiday 
-subquestion: |
-  Public holidays such as Christmas, New Years Eve, Boxing Day, Anzac Day, etc.
 fields:
-  - Are you paid any public holiday rates?: public_holiday_rates
+  - Are you getting paid any public holiday rates?: public_holiday_rates
     datatype: radio
     choices:
       - Yes
       - No
-  - How much are you paid on public holidays?: paid_public_holiday_rates
+  - What public holiday rates are you being paid?: paid_public_holiday_rates
     datatype: currency
     show if:
       variable: public_holiday_rates
@@ -157,18 +151,19 @@ fields:
       variable: public_holiday_rates
       is: 'Yes'
 ---
-Show if: 
-  variable: work_status
-  is: 'Full-Time or Part-Time'
-    
+Show if:
+    variable: work_status
+    is: 'Full-Time or Part-Time'
+
 question: Leave Entitlement
 fields:
+    
   - Are you entitled to leave?: leave_entitlement
     datatype: radio
     choices:
       - Yes
       - No
-  - Do you have leave owed to you?: leave_owing
+  - Do you have leave owing to you?: leave_owing
     datatype: radio
     choices:
       - Yes
