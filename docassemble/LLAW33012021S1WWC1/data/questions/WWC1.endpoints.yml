@@ -19,6 +19,12 @@ subquestion: |
   The award|${the_award}
   Employee Status|${work_status}
   Allowance|${what_allowance}
+  How many hours worked|${hours_week}
+  Amount per hour|${paid_hour}
+  Hours in Overtime|$(hours_overtime}
+  Overtime Rates in Award|${paid_overtime}
+  The penalty rates|${paid_penalty_rates}
+  Award Penalty Rates|${penalty_rates}
   
   
   Below is a downloadable docx file of ___. 
