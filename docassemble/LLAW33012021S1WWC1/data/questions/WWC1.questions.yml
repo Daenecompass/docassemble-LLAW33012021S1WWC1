@@ -13,9 +13,9 @@
 # full name and award 
 question: Details
 fields:
-  - First Name: First_Name
-  - Last Name: Last_Name
-  - Have you consulted an Industrial worker at WWC?: Consult_WWC
+  - First Name: first_name
+  - Last Name: last_name
+  - Have you consulted an Industrial worker at WWC?: consult_WWC
     datatype: radio
     choices:
       - Yes
@@ -38,7 +38,7 @@ fields:
 # Work status
 # how many hours do you work a week
 # how much do you get paid per hour
-question: Work Status
+question: Employee Status
 fields:
   - What type of employee are you?: work_status
     datatype: radio

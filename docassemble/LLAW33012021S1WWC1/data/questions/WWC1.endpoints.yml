@@ -7,15 +7,19 @@ objects:
 event: endpoints['filled_in']
 question: Your Document is Ready!
 subquestion: |
-  
+ Thank you for using this application ${ first_name + ' '+ last_name }. 
 
-  Thank you for using this application ____. 
-  
-  We have collected the following data from you:
+ We have collected the following data from you:
   
   Information|Your Input
-  -----------|----------
-               | ${ }
+  -----------|----
+  First Name|${first_name}
+  Last Name|${last_name}
+  Consulted an Industrial Worker at WWC|${consult_WWC}
+  The award|${the_award}
+  Employee Status|${work_status}
+  Allowance|${what_allowance}
+  
   
   Below is a downloadable docx file of ___. 
   
@@ -25,7 +29,7 @@ subquestion: |
 #  - name: WWC1 Summary Document
 #    docx template file: WWC_Form
 #    valid formats:
-#      - docx # Emma wants it available as word doc so that it can be edited
+#     - docx # Emma wants it available as word doc so that it can be edited
 buttons:
   - I wish to restart: restart
   - Exit: exit

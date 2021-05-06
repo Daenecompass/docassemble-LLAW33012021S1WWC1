@@ -24,14 +24,14 @@ buttons:
 ---
 mandatory: true
 code: |
-  First_Name
-  Last_Name
-  Consult_WWC
+  first_name
+  last_name
+  consult_WWC
   award_known
 
-  if award_known == 'Yes' and Consult_WWC == 'Yes':
+  if award_known == 'Yes' and consult_WWC == 'Yes':
     endpoints['filled_in']
-  elif award_known == 'No' or Consult_WWC == 'No':
+  elif award_known == 'No' or consult_WWC == 'No':
     #endpoint to the "go to WWC screen"
     pass
 ---
