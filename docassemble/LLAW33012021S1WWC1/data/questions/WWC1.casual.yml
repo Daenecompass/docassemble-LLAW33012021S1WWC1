@@ -17,9 +17,7 @@ subquestion: |
 fields:
  - Week Starting: casualHours[i].week
  - Hours Worked: casualHours[i].hours
-
-subquestion: |
-  Would you like to add another week?
-yesno: casualHours.there_is_another
+ - Would you like to add another week?: casualHours.there_is_another
+   datatype: yesno
 
 ---

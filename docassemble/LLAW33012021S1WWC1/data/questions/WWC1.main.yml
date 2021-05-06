@@ -22,3 +22,16 @@ buttons:
   - I do not agree and wish to exit: exit
     url: https://wwcsa.org.au/
 ---
+mandatory: true
+code: |
+  First_Name
+  Last_Name
+  Consult_WWC
+  award_known
+
+  if award_known == 'Yes' and Consult_WWC == 'Yes':
+    endpoints['filled_in']
+  elif award_known == 'No' or Consult_WWC == 'No':
+    #endpoint to the "go to WWC screen"
+    pass
+---
