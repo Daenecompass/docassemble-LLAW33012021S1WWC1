@@ -1,6 +1,9 @@
 # summary document available for dl and email with link
 # to the SAET forms page 
 ---
+include:
+  - WWC1.questions.yml
+---
 objects:
   - endpoints: DADict
 ---
@@ -21,8 +24,10 @@ subquestion: |
   % if work_status == 'Casual':
   Regular hours|${regular_hours}
   % endif
+  % if work_status == 'Full-Time' or work_status == 'Part-Time' or regular_hours == 'Yes':
   How many hours worked|${hours_week}
   Amount per hour|${paid_hour}
+  %endif
   % if paid_overtime == 'Yes':
   Hours in Overtime|$(hours_overtime}
   Amount of Overtime|${amount_overtime}
