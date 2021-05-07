@@ -29,7 +29,7 @@ subquestion: |
   Amount per hour|${paid_hour}
   %endif
   % if paid_overtime == 'Yes':
-  Hours in Overtime|$(hours_overtime}
+  Hours in Overtime|${hours_overtime}
   Amount of Overtime|${amount_overtime}
   Overtime Rates in Award|${overtime_award}
   % endif
@@ -45,7 +45,7 @@ subquestion: |
   Amount of Public Holiday Rates|${paid_public_holiday_rates}
   Public Holiday Rates in Award|${public_holiday_award}
   % endif
-  % if work_status == 'Full-Time' or 'Part-Time':
+  % if work_status == 'Full-Time' or work_status == 'Part-Time':
   % if leave_entitlement == 'Yes':
   % if leave_owing == 'Yes':
   How much leave is owed|${leave_owed}
