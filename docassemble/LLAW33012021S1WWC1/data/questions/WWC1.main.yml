@@ -65,6 +65,6 @@ code: |
     endpoints['filled_in']
     #endpoint to the summary document screen
   elif consult_WWC == 'No' or award_known == 'No':
+    endpoints['not_filled_in']
     #endpoint to the "go to WWC screen"
-    pass
 ---
