@@ -61,15 +61,16 @@ subquestion: |
   
   *include message re sending a copy of the doc to the relevant WWC industrial officer as well as a copy to their own email address
 
-#attachment:
-#  - name: WWC1 Summary Document
-#    docx template file: WWC_Form
-#    valid formats:
-#     - docx # Emma wants it available as word doc so that it can be edited
+attachment:
+   name: WWC1 Summary Document
+   docx template file: WWC_FORM.docx
+   valid formats:
+     - docx
+     
 buttons:
   - I wish to restart: restart
   - Exit: exit
     url: https://wwcsa.org.au/
-    
-# Emma wants both a link to the WWC website as well as the SAET forms webpage
+  - SAET Website: saet website
+    url: https://www.saet.sa.gov.au/forms/
 ---
