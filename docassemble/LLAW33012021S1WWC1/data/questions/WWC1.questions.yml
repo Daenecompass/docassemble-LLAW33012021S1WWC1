@@ -5,11 +5,9 @@
 # the logic flow easier to identify as it's not
 # cluttered with questions
 #
-# NOTE:  This file should not contain any mandatory
-# question blocks
+# NOTE:  This file should not contain any mandatory question blocks
 # checklist: name; consult with WWC; award known/unknown; type of employee; regular hours; hours per week; $ per hour; over time rates + award; penalty rates + award; allowances + award; public holiday rates + award; leave entitlement + leave owing; other + award if applicable.
 ---
-# full name and award 
 question: Details
 fields:
   - First Name: first_name
@@ -26,23 +24,19 @@ fields:
     choices:
       - Yes
       - No
-  # if the answer is no they are sent to another endpoint explaining where to get award
-  # info from, the fact it's updated every year, etc just basic info so they can
-  # understand it a bit more
+  # no answer will be sent to another endpoint prompting user to consult WWC because award must be known
   - What is your award: the_award
     show if:
       variable: award_known
       is: 'Yes'
 ---
-# Work status
-# how many hours do you work a week
-# how much do you get paid per hour
 question: Work Status
 fields:
   - What type of employee are you?: work_status
     datatype: radio
     choices:
       - Casual
+      # casual will be sent to Regular hours screen
       - Part-Time
       - Full-Time
 ---
@@ -65,10 +59,6 @@ fields:
   - How much do you get paid per hour?: paid_hour
     datatype: currency
 ---
-# over time
-# are you being paid overtime?
-# how much overtime are you doing?
-# how much do you get paid in overtime?
 question: Overtime
 fields:
   - Are you being paid overtime?: paid_overtime
@@ -91,9 +81,6 @@ fields:
       variable: paid_overtime
       is: 'Yes'
 ---
-# penalty rates
-# are you getting penalty rates
-# if yes, what are you getting paid per hour on penalty rate days?
 question: Penalty Rates
 fields:
   - Are you being paid penalty rates?: penalty_rates 
@@ -112,9 +99,6 @@ fields:
       variable: penalty_rates
       is: 'Yes'
 ---
-# allowances
-# are you getting allowances
-# if yes, how much are you getting in allowances?
 question: Allowances
 fields:
   - Are you getting paid any allowances?: what_allowance

@@ -1,4 +1,4 @@
-# This is the main file that includes: the welcome screen; legal disclaimer; mandatory question blocks; potentially event: function
+# This is the main file that includes: the welcome screen; legal disclaimer; mandatory code block that asks for basic information such as their name, whether they've consulted a WWC industrial officer, and whether their award is known.
 ---
 include:
   - WWC1.questions.yml
@@ -10,17 +10,46 @@ question: WWC Money Claim Form
 subquestion: |
   Welcome to the WWC Money Claim Form application.
   
-  [add text here] 
+  This application will help with completing the South Australian Employment Court Money Claims form by collecting the required information.
   
-  ***Disclaimer:***  
-  **This advice is not to be taken as legal advice and is not a substitute
-  for you seeking independent legal advice.**
-
-  If you continue you accept these terms.
+  **Disclaimer:** 
+  **This advice should not to be taken as legal advice and is not a substitute
+  for seeking independent legal advice.**
+ 
+   If you do not agree and wish to exit, you will be directed back to the WWC website.
 buttons:
   - I agree and wish to continue: continue
   - I do not agree and wish to exit: exit
     url: https://wwcsa.org.au/
+---
+mandatory: True
+question: Planning ahead!
+subquestion: |
+  Please prepare the following information:
+  
+  * Your applicable award
+  * Wages
+  * Overtime rates
+  * Penalty rates
+  * Allowances
+  * Public Holiday
+  * Leave
+  * Other applicable payment.
+
+buttons:
+  - I am ready to continue: continue
+---
+mandatory: True
+question: Basic information about Awards
+subquestion: |
+  A modern award is a document which sets out the minimum terms and conditions of employment on top of the National Employment Standards (NES). 
+  
+  You can locate your award and further information on the Australian Goverment Fair Work website - a WWC industrial officer will be able to assist you if required.
+  
+  **Please note** that you will be asked about rates according to your relevant award, and these rates will depend on whether you are a Casual, Part-Time, or Full-Time worker.
+  
+buttons:
+  - I am ready to continue: continue
 ---
 mandatory: true
 code: |
@@ -31,6 +60,7 @@ code: |
 
   if consult_WWC == 'Yes' and award_known == 'Yes':
     endpoints['filled_in']
+    #endpoint to the summary document screen
   elif consult_WWC == 'No' or award_known == 'No':
     #endpoint to the "go to WWC screen"
     pass
