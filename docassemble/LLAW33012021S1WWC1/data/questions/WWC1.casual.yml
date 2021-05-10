@@ -25,6 +25,8 @@ fields:
    required: false
  - Hours Worked: casualHours[i].hours
    required: false
+ - Hourly Pay Rate: casualHours[i].pay
+   required: false
 list collect:
   enable: not casualHours.has_been_gathered()
   is final: False

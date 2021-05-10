@@ -33,6 +33,7 @@ subquestion: |
   %for item in casualHours:
   Week Starting (${item.name}) | 
   Hours Worked|${item.hours} 
+  Hourly Pay Rate|${item.pay}
   %endfor
   %endif
   % if paid_overtime == 'Yes':
