@@ -25,7 +25,8 @@ buttons:
 mandatory: True
 question: Planning ahead!
 subquestion: |
-  Please prepare the following information:
+  
+  The application will ask for the following information:
   
   * Your applicable award
   * Wages
@@ -35,7 +36,9 @@ subquestion: |
   * Public Holiday
   * Leave
   * Other applicable payment.
-
+  
+  Preparing the necessary information/documents such as payslips, timesheets, etc. will be useful.
+  
 buttons:
   - I am ready to continue: continue
 ---
