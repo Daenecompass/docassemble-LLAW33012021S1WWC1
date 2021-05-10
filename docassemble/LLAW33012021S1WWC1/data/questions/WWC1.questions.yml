@@ -37,7 +37,7 @@ fields:
 # Work status
 # how many hours do you work a week
 # how much do you get paid per hour
-question: Employee Status
+question: Work Status
 fields:
   - What type of employee are you?: work_status
     datatype: radio
@@ -190,7 +190,13 @@ fields:
       variable: other_payment
       is: 'Yes'
   - What is the amount received from this other type of payment?: other_payment_amount
+    datatype: currency
     show if:
+      variable: other_payment
+      is: 'Yes'
+  - If applicable, What is the amount in the award?: other_amount_award
+    datatype: currency
+    Show if: 
       variable: other_payment
       is: 'Yes'
 ---
