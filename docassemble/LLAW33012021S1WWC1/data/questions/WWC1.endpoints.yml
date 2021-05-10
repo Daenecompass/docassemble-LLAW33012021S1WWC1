@@ -62,9 +62,9 @@ subquestion: |
   *include message re sending a copy of the doc to the relevant WWC industrial officer as well as a copy to their own email address
 
 attachment:
-   name: WWC1 Summary Document
-   docx template file: WWC_FORM.docx
-   valid formats:
+  - name: WWC1 Summary Document
+    docx template file: WWC_FORM.docx
+    valid formats:
      - docx
      
 buttons:
