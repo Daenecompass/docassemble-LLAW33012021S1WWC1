@@ -71,7 +71,7 @@ buttons:
   - I wish to restart: restart
   - Exit: exit
     url: https://wwcsa.org.au/
-  - SAET Website: saet website
+  - SAET Website: exit
     url: https://www.saet.sa.gov.au/forms/
 ---
 event: endpoints['not_filled_in']
@@ -82,6 +82,6 @@ subquestion: |
 buttons:
   - I wish to restart: restart
   - Exit: exit
-  - Contact the Womens Working Centre: wwc website
+  - Contact the Womens Working Centre: exit
     url: https://wwcsa.org.au/
 ---
