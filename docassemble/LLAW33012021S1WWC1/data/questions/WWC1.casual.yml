@@ -6,7 +6,10 @@
 # our scenario
 ---
 objects:
- - casualHours: DAList
+ - casualHours: DAList.using(object_type=Thing, there_are_any=True, minimum_number = 1)
+---
+code: |
+  casualHours.appendObject()
 ---
 question: Casual Work
 subquestion: |

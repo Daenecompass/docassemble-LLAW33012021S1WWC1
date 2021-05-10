@@ -57,7 +57,6 @@ fields:
     choices:
       - Yes
       - No
-
 ---
 # not sure how to tie Casual back into this if regular is yes 
 question: Working Hours
@@ -196,7 +195,7 @@ fields:
       is: 'Yes'
   - If applicable, What is the amount in the award?: other_amount_award
     datatype: currency
-    Show if: 
+    show if: 
       variable: other_payment
       is: 'Yes'
 ---
