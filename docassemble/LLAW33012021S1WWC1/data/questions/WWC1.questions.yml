@@ -61,7 +61,7 @@ fields:
 ---
 question: Overtime
 fields:
-  - Are you being paid overtime?: paid_overtime
+  - Are you being paid {overtime}?: paid_overtime
     datatype: radio
     choices:
       - Yes
@@ -80,10 +80,13 @@ fields:
     show if:
       variable: paid_overtime
       is: 'Yes'
+terms:
+  overtime: |
+    Overtime is when you work outside of the agreed number of hours
 ---
 question: Penalty Rates
 fields:
-  - Are you being paid penalty rates?: penalty_rates 
+  - Are you being paid {penalty rates}?: penalty_rates 
     datatype: radio
     choices:
       - Yes
@@ -98,10 +101,13 @@ fields:
     show if:
       variable: penalty_rates
       is: 'Yes'
+terms: 
+  penalty rates: |
+    Penalty rates include Sunday's, early mornings, late/night shifts.
 ---
 question: Allowances
 fields:
-  - Are you getting paid any allowances?: what_allowance
+  - Are you getting paid any {allowances}?: what_allowance
     datatype: radio
     choices:
       - Yes
@@ -116,10 +122,13 @@ fields:
     show if:
       variable: what_allowance
       is: 'Yes'
+terms:
+  allowances: |
+    Allowances includes things such as uniform costs and travel costs.
 ---
 question: Public Holiday 
 fields:
-  - Are you getting paid any public holiday rates?: public_holiday_rates
+  - Are you getting paid any {public holiday rates}?: public_holiday_rates
     datatype: radio
     choices:
       - Yes
@@ -134,6 +143,9 @@ fields:
     show if:
       variable: public_holiday_rates
       is: 'Yes'
+terms:
+  public holiday rates: |
+    Public holidays such as Christmas, New Years Eve, Boxing Day, Anzac Day, etc.
 ---
 Show if:
     variable: work_status
@@ -142,7 +154,7 @@ Show if:
 question: Leave Entitlement
 fields:
     
-  - Are you entitled to leave?: leave_entitlement
+  - Are you entitled to {leave}?: leave_entitlement
     datatype: radio
     choices:
       - Yes
@@ -160,10 +172,15 @@ fields:
     show if:
       variable: leave_owing
       is: 'Yes'
+terms:
+  leave: |
+    Paid leave is available for full-time or part-time workers. You may receive this paid leave for sick days, annual leave, compassionate leave, etc. 
+    
+    Please note that upon end of employment, annual leave will be paid out to you and personal leave will not.
 ---
 question: Other
 fields:
-  - Are you getting paid any other type of payment that has not already been specified?: other_payment
+  - Are you getting paid any {other type of payment} that has not already been specified?: other_payment
     datatype: radio
     choices:
       - Yes
@@ -182,4 +199,7 @@ fields:
     show if: 
       variable: other_payment
       is: 'Yes'
+terms:
+  other type of payment: |
+    These may include commissions, redundancy pay, payment in lieu of termination of employment contract, superannuation, or interest.
 ---
