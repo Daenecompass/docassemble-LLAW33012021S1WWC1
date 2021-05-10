@@ -28,6 +28,13 @@ subquestion: |
   How many hours worked|${hours_week}
   Amount per hour|${paid_hour}
   %endif
+  %if work_status == 'Casual' and regular_hours == 'No':
+  Casual Hours|
+  %for item in casualHours:
+  Week Starting (${item.name}) | 
+  Hours Worked|${item.hours} 
+  %endfor
+  %endif
   % if paid_overtime == 'Yes':
   Hours in Overtime|${hours_overtime}
   Amount of Overtime|${amount_overtime}

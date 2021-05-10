@@ -5,8 +5,11 @@
 # refer to FUSA's way of scheduling their events - obvs will have to be modified to suit
 # our scenario
 ---
+include:
+ - WWC1.questions.yml
+---
 objects:
- - casualHours: DAList.using(object_type=Thing, there_are_any=True, minimum_number = 1)
+ - casualHours: DAList.using(object_type=Thing, there_are_any=True, minimum_number = 2)
 ---
 code: |
   casualHours.appendObject()
@@ -18,9 +21,16 @@ subquestion: |
 # i want it to recurse onto one page
 
 fields:
- - Week Starting: casualHours[i].week
+ - Week Starting: casualHours[i].name.text
+   required: false
  - Hours Worked: casualHours[i].hours
- - Would you like to add another week?: casualHours.there_is_another
-   datatype: yesno
-
+   required: false
+list collect:
+  enable: not casualHours.has_been_gathered()
+  is final: False
+  allow delete: False
+  
+---
+question: Would you like to add another week?
+yesno: casualHours.there_is_another
 ---

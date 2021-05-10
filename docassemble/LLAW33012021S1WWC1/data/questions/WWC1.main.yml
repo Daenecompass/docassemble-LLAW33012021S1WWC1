@@ -32,7 +32,6 @@ code: |
   if consult_WWC == 'Yes' and award_known == 'Yes':
     endpoints['filled_in']
   elif consult_WWC == 'No' or award_known == 'No':
-    endpoints['not_filled_in']
     #endpoint to the "go to WWC screen"
     pass
 ---
