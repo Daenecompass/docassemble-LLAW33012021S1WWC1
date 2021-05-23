@@ -1,9 +1,0 @@
----
-code: |
-  overtime_difference = (overtime_award - amount_overtime)
-  penalty_difference = (penalty_award - paid_penalty_rates)
-  allowance_difference = (allowance_award - amount_allowance)
-  public_holiday_difference = (public_holiday_award - paid_public_holiday_rates)
-  other_difference = ( other_amount_award - other_payment_amount)
-  
----
