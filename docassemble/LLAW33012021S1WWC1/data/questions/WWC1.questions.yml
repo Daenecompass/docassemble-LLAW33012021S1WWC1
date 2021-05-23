@@ -133,11 +133,28 @@ fields:
     choices:
       - Yes
       - No
-  - What public holiday rates are you being paid?: paid_public_holiday_rates
-    datatype: currency
+  - What public holiday rates are you being paid?: what_public_holiday_rates
+    choices: 
+      - Australia Day 
+      - Christmas Day 
+      - Boxing Day
+      - New Years Day
+      - Adelaide Cup Day
+      - Easter Saturday 
+      - Easter Sunday 
+      - Easter Monday 
+      - ANZAC Day 
+      - Christmas Eve after 7pm to Midnight
+      - New Years Eve after 7pm to Midnight 
+      - Queens Birthday
     show if:
       variable: public_holiday_rates
       is: 'Yes'
+  - How much did you get paid for on this public holiday?: paid_public_holiday_rates
+    datatype: currency
+    show if: 
+      variable: public_holiday_rates
+      is: 'Yes' 
   - What are the public holiday rates according to your relevant award?: public_holiday_award
     datatype: currency
     show if:
