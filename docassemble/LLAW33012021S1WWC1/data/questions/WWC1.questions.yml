@@ -134,19 +134,6 @@ fields:
       - Yes
       - No
   - What public holiday rates are you being paid?: what_public_holiday_rates
-    choices: 
-      - Australia Day 
-      - Christmas Day 
-      - Boxing Day
-      - New Years Day
-      - Adelaide Cup Day
-      - Easter Saturday 
-      - Easter Sunday 
-      - Easter Monday 
-      - ANZAC Day 
-      - Christmas Eve after 7pm to Midnight
-      - New Years Eve after 7pm to Midnight 
-      - Queens Birthday
     show if:
       variable: public_holiday_rates
       is: 'Yes'
