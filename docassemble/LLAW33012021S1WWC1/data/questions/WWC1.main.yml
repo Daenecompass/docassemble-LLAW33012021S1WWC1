@@ -6,9 +6,9 @@ include:
   - WWC1.casual.yml
 ---
 mandatory: True
-question: WWC Money Claim Form
+question: WWC Money Claim Guide
 subquestion: |
-  Welcome to the WWC Money Claim Form application.
+  Welcome to the WWC Money Claim Guide. 
   
   This application will help with completing the South Australian Employment Court Money Claims form by collecting the required information.
   
@@ -26,31 +26,29 @@ mandatory: True
 question: Planning ahead!
 subquestion: |
   
-  The application will ask for the following information:
+  Prepare the following as the guide will ask for:
   
-  * Your applicable award
+  * Your relevant award
   * Wages
   * Overtime rates
   * Penalty rates
   * Allowances
   * Public Holiday
   * Leave
-  * Other applicable payment.
-  
-  Preparing the necessary information/documents such as payslips, timesheets, etc. will be useful.
-  
+  * Other relevant payments.
+ 
 buttons:
-  - I am ready to continue: continue
+  - Ready to Continue: continue
 ---
 mandatory: True
 question: Basic information about Awards
 subquestion: |
-  A modern award is a document which sets out the minimum terms and conditions of employment on top of the National Employment Standards (NES). 
-  
-  You can locate your award and further information on the Australian Goverment Fair Work website - a WWC industrial officer will be able to assist you if required.
-  
   **Please note** that you will be asked about rates according to your relevant award, and these rates will depend on whether you are a Casual, Part-Time, or Full-Time worker.
   
+  A modern award is a document which sets out minimum terms and conditions of employment on top of the National Employment Standards (NES). 
+  
+  You can locate your award and further information on the Australian Goverment Fair Work website - a WWC industrial officer will be able to assist you if required.
+
 buttons:
   - I am ready to continue: continue
 ---
