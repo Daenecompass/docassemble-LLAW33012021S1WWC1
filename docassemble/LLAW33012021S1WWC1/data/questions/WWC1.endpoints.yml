@@ -10,6 +10,11 @@ objects:
 event: endpoints['filled_in']
 question: Your Document is Ready!
 subquestion: |
+  Below is a downloadable docx file of WWC Money Claim Form. 
+  
+  Please send a copy of the document to the advising WWC industrial officer through the email option below.
+
+under: |
  Thank you for using this application ${ first_name + ' '+ last_name }. 
 
  We have collected the following data from you:
@@ -65,10 +70,6 @@ subquestion: |
   The amount of other payment|${other_payment_amount}
   % endif
   
-  Below is a downloadable docx file of WWC Money Claim Form. 
-  
-  Please send a copy of the document to the advising WWC industrial officer through the email option below.
-
 attachment:
   - name: WWC1 Summary Document
     docx template file: WWC_FORM.docx
