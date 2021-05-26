@@ -22,10 +22,13 @@ subquestion: |
 
 fields:
  - Week Starting: casualHours[i].name.text
+   datatype: date
    required: false
  - Hours Worked: casualHours[i].hours
+   datatype: number
    required: false
  - Hourly Pay Rate: casualHours[i].pay
+   datatype: currency
    required: false
 list collect:
   enable: not casualHours.has_been_gathered()

@@ -10,20 +10,24 @@ objects:
 event: endpoints['filled_in']
 question: Your Document is Ready!
 subquestion: |
+  Thank you for using this application ${ first_name + ' '+ last_name }. 
+  
   Below is a downloadable docx file of WWC Money Claim Form. 
   
   Please send a copy of the document to the advising WWC industrial officer through the email option below.
 
 under: |
- Thank you for using this application ${ first_name + ' '+ last_name }. 
 
  We have collected the following data from you:
   
-  Information|Your Input
-  -----------|----
+  Your Details|Your Input
+  -----|----
   First Name|${first_name}
   Last Name|${last_name}
   Consulted an Industrial Worker at WWC|${consult_WWC}
+  
+  Employeement status and details|Your Input
+  ----|----
   Name of award|${the_award}
   Employee Status|${work_status}
   % if work_status == 'Casual':
@@ -36,11 +40,14 @@ under: |
   %if work_status == 'Casual' and regular_hours == 'No':
   Casual Hours|
   %for item in casualHours:
-  Week Starting (${item.name}) | 
+  Week Starting|${item.name}
   Hours Worked|${item.hours} 
   Hourly Pay Rate|${item.pay}
   %endfor
   %endif
+  
+  Other information|Your Input
+  ----|----
   % if paid_overtime == 'Yes':
   Hours in Overtime|${hours_overtime}
   Amount of Overtime|${amount_overtime}
