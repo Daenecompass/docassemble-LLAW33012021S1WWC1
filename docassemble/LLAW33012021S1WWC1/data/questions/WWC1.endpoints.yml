@@ -25,10 +25,10 @@ under: |
   First Name|${first_name}
   Last Name|${last_name}
   Consulted an Industrial Worker at WWC|${consult_WWC}
+  Name of award|${the_award}
   
   Employeement status and details|Your Input
   ----|----
-  Name of award|${the_award}
   Employee Status|${work_status}
   % if work_status == 'Casual':
   Regular hours|${regular_hours}
@@ -36,6 +36,7 @@ under: |
   % if work_status == 'Full-Time' or work_status == 'Part-Time' or regular_hours == 'Yes':
   How many hours worked|${hours_week}
   Amount per hour|${paid_hour}
+  Award Amount per hour|${award_paid_hour}
   %endif
   %if work_status == 'Casual' and regular_hours == 'No':
   Casual Hours|
@@ -43,6 +44,7 @@ under: |
   Week Starting|${item.name}
   Hours Worked|${item.hours} 
   Hourly Pay Rate|${item.pay}
+  Award Pay Rate|${item.award}
   %endfor
   %endif
   
@@ -54,14 +56,17 @@ under: |
   Overtime Rates in Award|${overtime_award}
   % endif
   % if penalty_rates == 'Yes':
-  The penalty rates|${paid_penalty_rates}
+  What Penalty Rate|${name_penalty_rates}
+  The amount of penalty rates|${paid_penalty_rates}
   Award Penalty Rates|${penalty_award}
   % endif
   % if what_allowance == 'Yes':
+  The Allowance|${name_allowance}
   The Allowance Amount|${amount_allowance}
   Award Allowance Amount|${allowance_award}
   % endif
   % if public_holiday_rates == 'Yes':
+  The Public Holiday|${what_public_holiday_rates}
   Amount of Public Holiday Rates|${paid_public_holiday_rates}
   Public Holiday Rates in Award|${public_holiday_award}
   % endif

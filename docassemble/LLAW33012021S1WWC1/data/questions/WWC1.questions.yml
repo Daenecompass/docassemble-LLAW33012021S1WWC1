@@ -56,7 +56,10 @@ fields:
 question: Working Hours
 fields:
   - How many hours do you work a week?: hours_week
+    datatype: number
   - How much do you get paid per hour?: paid_hour
+    datatype: currency
+  - How much should you be getting paid according to your award?: award_paid_hour
     datatype: currency
 ---
 question: Overtime
@@ -67,6 +70,7 @@ fields:
       - Yes
       - No
   - How much overtime (in hours) are you doing?: hours_overtime
+    datatype: number
     show if:
       variable: paid_overtime
       is: 'Yes'
@@ -91,7 +95,11 @@ fields:
     choices:
       - Yes
       - No
-  - What penalty rates are you receiving?: paid_penalty_rates 
+  - What penalty rates are you receiving?: name_penalty_rates
+    show if:
+      variable: penalty_rates
+      is: 'Yes'
+  - What penalty rates amount did you receive?: paid_penalty_rates
     datatype: currency
     show if:
       variable: penalty_rates
@@ -112,10 +120,14 @@ fields:
     choices:
       - Yes
       - No
-  - What allowances are you receiving?: amount_allowance
-    datatype: currency
+  - What allowances are you receiving?: name_allowance
     show if:
       variable: what_allowance
+      is: 'Yes'
+  - What amount much have you received?: amount_allowance
+    datatype: currency
+    show if: 
+      variable: what_allowance 
       is: 'Yes'
   - What are the allowances according to your relevant award?: allowance_award
     datatype: currency
@@ -176,11 +188,11 @@ fields:
     show if:
       variable: leave_owing
       is: 'Yes'
+under:
+    Please note that upon end of employment, annual leave will be paid out to you and personal leave will not.
 terms:
   leave: |
     Paid leave is available for full-time or part-time workers. You may receive this paid leave for sick days, annual leave, compassionate leave, etc. 
-    
-    Please note that upon end of employment, annual leave will be paid out to you and personal leave will not.
 ---
 question: Other
 fields:

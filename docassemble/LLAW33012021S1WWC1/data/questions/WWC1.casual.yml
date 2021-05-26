@@ -30,6 +30,10 @@ fields:
  - Hourly Pay Rate: casualHours[i].pay
    datatype: currency
    required: false
+ - Award Hourly Pay Rate: casualHours[i].award
+   datatype: currency
+   required: false 
+   
 list collect:
   enable: not casualHours.has_been_gathered()
   is final: False
