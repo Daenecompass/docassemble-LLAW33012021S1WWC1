@@ -19,7 +19,7 @@ code: |
     # some custim HTML. The string below creates the HTML and
     # inserts into if the logo contained in the file WWClogo using 
     # the pyton format() method
-    WWCLogostring =  WWCLogostring = '<div class="media"><img src="{}" class="mr-8" height="90"><div class="media-body"></div></div>'.format(WWClogo.url_for())
+    WWCLogostring =  WWCLogostring = '<div class="media"><img src="{}" class="mr-8" height="95"><div class="media-body"></div></div>'.format(WWClogo.url_for())
     
     set_parts(logo=WWCLogostring)
 ---

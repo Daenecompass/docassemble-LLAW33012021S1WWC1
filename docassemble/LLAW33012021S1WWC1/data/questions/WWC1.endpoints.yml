@@ -10,9 +10,9 @@ objects:
 event: endpoints['filled_in']
 question: Your Document is Ready!
 subquestion: |
-  Thank you for using this application ${ first_name + ' '+ last_name }. 
+  Thank you for using this guide ${ first_name + ' '+ last_name }. 
   
-  Below is a downloadable docx file of WWC Money Claim Form. 
+  Below is a downloadable docx file of WWC Money Claim Guide. 
   
   Please send a copy of the document to the advising WWC industrial officer through the email option below.
 

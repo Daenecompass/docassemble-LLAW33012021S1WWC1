@@ -124,7 +124,7 @@ fields:
     show if:
       variable: what_allowance
       is: 'Yes'
-  - What amount much have you received?: amount_allowance
+  - What amount have you received?: amount_allowance
     datatype: currency
     show if: 
       variable: what_allowance 
