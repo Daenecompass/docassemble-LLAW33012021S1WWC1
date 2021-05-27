@@ -10,8 +10,6 @@ objects:
 ---
 features: 
   css: WWC.css
-  debug: True
-  hide standard menu: False
 ---
 mandatory: True
 code: | 
