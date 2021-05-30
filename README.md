@@ -1,6 +1,6 @@
 # docassemble.LLAW33012021S1WWC1
 
-A docassemble extension.
+This application will be providing a guide to users. 
 
 ## Author
 
