@@ -39,6 +39,25 @@ fields:
       # casual will be sent to Regular hours screen
       - Part-Time
       - Full-Time
+under: |
+  Full time employee:
+
+	 * Works around or more 38 hours a week
+	 * Can be permanent or contracted
+	 * Entitled to paid annual, sick or carer leave
+
+  Part time employee:
+	 
+   * Works less than 38 hours a week
+	 * Usually works regular hours each week
+	 * Can be permanent or contracted
+	 * Entitled to paid annual, sick or carer leave
+
+  Casual employee:
+	 
+   * Employee with no fixed pattern of work, and no promises of continued work.
+	 * No permanent employment when compared to full or part time
+   * Not entitled to paid leave 
 ---
 show if:
       variable: work_status
@@ -84,9 +103,9 @@ fields:
     show if:
       variable: paid_overtime
       is: 'Yes'
-terms:
+terms: 
   overtime: |
-    Overtime is when you work outside of the agreed number of hours
+     Overtime is when you work outside of the previously agreed number of hours
 ---
 question: Penalty Rates
 fields:
@@ -111,7 +130,7 @@ fields:
       is: 'Yes'
 terms: 
   penalty rates: |
-    Penalty rates include Sunday's, early mornings, late/night shifts.
+    Penalty rates include Sundays, early mornings, late/night shifts.
 ---
 question: Allowances
 fields:
@@ -161,7 +180,7 @@ fields:
       is: 'Yes'
 terms:
   public holiday rates: |
-    Public holidays such as Christmas, New Years Eve, Boxing Day, Anzac Day, etc.
+    Public holidays rates are special rates which are paid out on days such as Christmas, New Years Eve, Boxing Day, Anzac Day, etc.
 ---
 Show if:
     variable: work_status

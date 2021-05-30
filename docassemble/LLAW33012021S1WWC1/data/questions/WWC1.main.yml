@@ -28,7 +28,8 @@ subquestion: |
   
   This application will help with completing the South Australian Employment Court Money Claims form by collecting the required information.
   
-  **Disclaimer:** 
+  **Disclaimer**
+  
   **This advice should not to be taken as legal advice and is not a substitute
   for seeking independent legal advice.**
  
@@ -42,7 +43,7 @@ mandatory: True
 question: Planning ahead!
 subquestion: |
   
-  Prepare the following as the guide will ask for:
+  Before you begin, you need to have the following information:
   
   * Your relevant award
   * Wages
@@ -64,7 +65,7 @@ subquestion: |
   A modern award is a document which sets out minimum terms and conditions of employment on top of the National Employment Standards (NES). 
   
   You can locate your award and further information on the 
-  <a target="_self" href="https://www.fairwork.gov.au/awards-and-agreements/awards/find-my-award/">Australian Goverment Fair Work Ombudsman</a> , a WWC industrial officer will be able to assist you if required.
+  <a target="_self" href="https://www.fairwork.gov.au/awards-and-agreements/awards/find-my-award/">Australian Goverment Fair Work Ombudsman</a>, a WWC industrial officer will be able to assist you if required.
 
 buttons:
   - I am ready to continue: continue
