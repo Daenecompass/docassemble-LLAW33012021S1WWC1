@@ -11,7 +11,9 @@
 question: Details
 fields:
   - First Name: first_name
+    default: Anne
   - Last Name: last_name
+    default: Faulkner
   - Have you consulted an Industrial worker at WWC?: consult_WWC
     datatype: radio
     choices:
@@ -29,6 +31,7 @@ fields:
     show if:
       variable: award_known
       is: 'Yes'
+    default: Restaurant Industry Award 2020
 ---
 question: Work Status
 fields:
@@ -76,10 +79,13 @@ question: Working Hours
 fields:
   - How many hours do you work a week?: hours_week
     datatype: number
+    default: 38
   - How much do you get paid per hour?: paid_hour
     datatype: currency
+    default: 15
   - How much should you be getting paid according to your award?: award_paid_hour
     datatype: currency
+    default: 19.84
 ---
 question: Overtime
 fields:
@@ -93,16 +99,19 @@ fields:
     show if:
       variable: paid_overtime
       is: 'Yes'
+    default: 2
   - How much do you get paid in overtime?: amount_overtime
     datatype: currency
     show if:
       variable: paid_overtime
       is: 'Yes'
+    default: 20
   - What are the Overtime Rates according to your relevant award?: overtime_award
     datatype: currency
     show if:
       variable: paid_overtime
       is: 'Yes'
+    default: 29.76
 terms: 
   overtime: |
      Overtime is when you work outside of the previously agreed number of hours
@@ -131,18 +140,21 @@ fields:
 #    show if:
 #      variable: penalty_rates
 #      is: 'Yes'
+    default: Sundays
   - What penalty rates amount did you receive?: penRates[i].paid_rates
     datatype: currency
     required: false
 #    show if:
 #      variable: penalty_rates
 #      is: 'Yes'
+    default: 26
   - What are the penalty rates according to your relevant award?: penRates[i].penRateAward
     datatype: currency
     required: false
 #    show if:
 #      variable: penalty_rates
 #      is: 'Yes'
+    default: 29.76
       
 list collect:
   enable: not penRates.has_been_gathered()
@@ -236,6 +248,7 @@ fields:
     show if:
       variable: leave_owing
       is: 'Yes'
+    default: 1507.6
 under:
     Please note that upon end of employment, annual leave will be paid out to you and personal leave will not.
 terms:
