@@ -48,16 +48,6 @@ under: |
   %endfor
   %endif
   
-  % if penalty_rates == 'Yes':
-  Penalty Rates|Your Input
-  ----|----
-  %for rate in penRates:
-  What Penalty Rate|${rate.name}
-  The amount of penalty rates|${rate.paid_rates}
-  Award Penalty Rates|${rate.penRateAward}
-  %endfor
-  % endif
-  
   Other information|Your Input
   ----|----
   % if paid_overtime == 'Yes':
@@ -65,6 +55,13 @@ under: |
   Amount of Overtime|${amount_overtime}
   Overtime Rates in Award|${overtime_award}
   % endif  
+  % if penalty_rates == 'Yes':
+  %for rate in penRates:
+  What Penalty Rate|${rate.name}
+  The amount of penalty rates|${rate.paid_rates}
+  Award Penalty Rates|${rate.penRateAward}
+  %endfor
+  % endif
   % if what_allowance == 'Yes':
   The Allowance|${name_allowance}
   The Allowance Amount|${amount_allowance}
