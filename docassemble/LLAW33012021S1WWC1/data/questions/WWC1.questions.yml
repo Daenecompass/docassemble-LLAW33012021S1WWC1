@@ -176,10 +176,13 @@ terms:
 question: Allowances
 fields:
   - What allowances are you receiving?: allowances[i].name.text
+    default: Special clothing allowance
   - What amount have you received?: allowances[i].amount_allowance
     datatype: currency
+    default: 30
   - What are the allowances according to your relevant award?: allowances[i].allowance_award
     datatype: currency
+    default: 45
 
 list collect:
   enable: not allowances.has_been_gathered()
@@ -211,12 +214,15 @@ question: Public Holiday
 fields:
   - What public holiday rates are you being paid?: pubHol[i].name.text
     required: false
+    default: Christmas Day
   - How much did you get paid for on this public holiday?: pubHol[i].paid_public_holiday_rates
     datatype: currency
     required: false
+    default: 30
   - What are the public holiday rates according to your relevant award?: pubHol[i].public_holiday_award
     datatype: currency
     required: false
+    default: 50
     
 list collect:
   enable: not pubHol.has_been_gathered()
@@ -280,12 +286,15 @@ question: Other
 fields:
   - Please provide information on the other type of payment: otherPayment[i].name.text
     required: false
+    default: Redundancy pay
   - What is the amount received from this other type of payment?: otherPayment[i].amount
     datatype: currency
     required: false
+    default: 0
   - If applicable, What is the amount in the award?: otherPayment[i].amount_award
     datatype: currency
     required: false
+    default: 753.80
 
 list collect:
   enable: not otherPayment.has_been_gathered()
