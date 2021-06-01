@@ -153,6 +153,12 @@ list collect:
 question: Would you like to add another penalty rate day?
 yesno: penRates.there_is_another
 ---
+objects:
+ - allowances: DAList.using(object_type=Thing, there_are_any=True, minimum_number = 2)
+---
+code: |
+  allowances.appendObject()
+---
 question: Allowances
 fields:
   - Are you getting paid any {allowances}?: what_allowance
@@ -160,23 +166,25 @@ fields:
     choices:
       - Yes
       - No
-  - What allowances are you receiving?: name_allowance
-    show if:
-      variable: what_allowance
-      is: 'Yes'
-  - What amount have you received?: amount_allowance
-    datatype: currency
-    show if: 
-      variable: what_allowance 
-      is: 'Yes'
-  - What are the allowances according to your relevant award?: allowance_award
-    datatype: currency
-    show if:
-      variable: what_allowance
-      is: 'Yes'
 terms:
   allowances: |
     Allowances includes things such as uniform costs and travel costs.
+---
+question: Allowances
+fields:
+  - What allowances are you receiving?: allowances.name.text
+  - What amount have you received?: allowances.amount_allowance
+    datatype: currency
+  - What are the allowances according to your relevant award?: allowances.allowance_award
+
+list collect:
+  enable: not allowances.has_been_gathered()
+  is final: False
+  allow delete: true
+    
+---
+question: Would you like to add another allowance?
+yesno: allowances.there_is_another
 ---
 question: Public Holiday 
 fields:

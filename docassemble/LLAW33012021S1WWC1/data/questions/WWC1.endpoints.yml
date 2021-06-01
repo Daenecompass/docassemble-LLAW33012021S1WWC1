@@ -63,9 +63,11 @@ under: |
   %endfor
   % endif
   % if what_allowance == 'Yes':
-  The Allowance|${name_allowance}
-  The Allowance Amount|${amount_allowance}
-  Award Allowance Amount|${allowance_award}
+  %for allowance in allowances:
+  The Allowance|${allowances.name.text}
+  The Allowance Amount|${allowances.amount_allowance}
+  Award Allowance Amount|${allowances.allowance_award}
+  %endfor
   % endif
   % if public_holiday_rates == 'Yes':
   The Public Holiday|${what_public_holiday_rates}
