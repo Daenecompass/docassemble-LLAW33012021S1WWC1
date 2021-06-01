@@ -48,18 +48,23 @@ under: |
   %endfor
   %endif
   
+  % if penalty_rates == 'Yes':
+  Penalty Rates|Your Input
+  ----|----
+  %for rate in penRates:
+  What Penalty Rate|${rate.name}
+  The amount of penalty rates|${rate.paid_rates}
+  Award Penalty Rates|${rate.penRateAward}
+  %endfor
+  % endif
+  
   Other information|Your Input
   ----|----
   % if paid_overtime == 'Yes':
   Hours in Overtime|${hours_overtime}
   Amount of Overtime|${amount_overtime}
   Overtime Rates in Award|${overtime_award}
-  % endif
-  % if penalty_rates == 'Yes':
-  What Penalty Rate|${name_penalty_rates}
-  The amount of penalty rates|${paid_penalty_rates}
-  Award Penalty Rates|${penalty_award}
-  % endif
+  % endif  
   % if what_allowance == 'Yes':
   The Allowance|${name_allowance}
   The Allowance Amount|${amount_allowance}
@@ -81,12 +86,13 @@ under: |
   Other Payment Type|${other_payment_info}
   The amount of other payment|${other_payment_amount}
   % endif
+
   
-attachment:
-  - name: WWC1 Summary Document
-    docx template file: WWC_FORM.docx
-    valid formats:
-     - docx
+#attachment:
+#  - name: WWC1 Summary Document
+#    docx template file: WWC_FORM.docx
+#    valid formats:
+#     - docx
      
 buttons:
   - I wish to restart: restart

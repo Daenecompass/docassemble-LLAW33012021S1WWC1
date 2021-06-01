@@ -107,6 +107,12 @@ terms:
   overtime: |
      Overtime is when you work outside of the previously agreed number of hours
 ---
+objects:
+ - penRates: DAList.using(object_type=Thing, there_are_any=True, minimum_number = 2)
+---
+code: |
+  penRates.appendObject()
+---
 question: Penalty Rates
 fields:
   - Are you being paid {penalty rates}?: penalty_rates 
@@ -114,23 +120,38 @@ fields:
     choices:
       - Yes
       - No
-  - What penalty rates are you receiving?: name_penalty_rates
-    show if:
-      variable: penalty_rates
-      is: 'Yes'
-  - What penalty rates amount did you receive?: paid_penalty_rates
-    datatype: currency
-    show if:
-      variable: penalty_rates
-      is: 'Yes'
-  - What are the penalty rates according to your relevant award?: penalty_award
-    datatype: currency
-    show if:
-      variable: penalty_rates
-      is: 'Yes'
 terms: 
   penalty rates: |
     Penalty rates include Sundays, early mornings, late/night shifts.
+---
+question: Penalty Rates
+fields:
+  - What penalty rates are you receiving?: penRates[i].name.text
+    required: false
+#    show if:
+#      variable: penalty_rates
+#      is: 'Yes'
+  - What penalty rates amount did you receive?: penRates[i].paid_rates
+    datatype: currency
+    required: false
+#    show if:
+#      variable: penalty_rates
+#      is: 'Yes'
+  - What are the penalty rates according to your relevant award?: penRates[i].penRateAward
+    datatype: currency
+    required: false
+#    show if:
+#      variable: penalty_rates
+#      is: 'Yes'
+      
+list collect:
+  enable: not penRates.has_been_gathered()
+  is final: False
+  allow delete: true
+    
+---
+question: Would you like to add another penalty rate day?
+yesno: penRates.there_is_another
 ---
 question: Allowances
 fields:
