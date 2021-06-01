@@ -16,8 +16,12 @@ code: |
 ---
 question: Casual Work
 subquestion: |
-  Insert how to use this aspect
+  Below is a tool that helps you organise your weekly rates for any irregular hours worked.
   
+  You can add as many weeks as applicable by clicking on the 'Add another' button at the bottom of the screen. 
+  
+  You may also wish to delete any sections by clicking on the 'Delete' button next to the relevant section.
+
 # i want it to recurse onto one page
 
 fields:

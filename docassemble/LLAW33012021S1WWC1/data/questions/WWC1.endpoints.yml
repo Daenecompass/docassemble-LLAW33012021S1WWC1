@@ -12,7 +12,9 @@ question: Your Document is Ready!
 subquestion: |
   Thank you for using this guide ${ first_name + ' '+ last_name }. 
   
-  Below is a downloadable docx file of WWC Money Claim Guide. 
+  Below is a downloadable docx file of WWC Money Claim Guide that contains the data you have given us.
+  
+  You will find the calculations for amounts owed to you by your employer within the WWC Money Claim Guide docx file.
   
   Please send a copy of the document to the advising WWC industrial officer through the email option below.
 
@@ -108,7 +110,7 @@ buttons:
 event: endpoints['not_filled_in']
 question: You do not know your award
 subquestion: |
-  If you do not know what your relevant Award is, you are unable to complete this application to create a form. To exit out of this application, please press exit. If you would like further assistance out what your relevant Award is, then you can contact a Women's Working Centre Industrial worker for clarification.
+  If you do not know what your relevant Award is, you are unable to use this guide. To exit out of this guide, please press exit. If you would like further assistance, please contact the Working Women's Centre.
   
 buttons:
   - I wish to restart: restart

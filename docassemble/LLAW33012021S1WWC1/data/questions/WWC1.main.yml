@@ -50,7 +50,7 @@ buttons:
     url: https://wwcsa.org.au/
 ---
 mandatory: True
-question: Planning ahead!
+question: What you need to use the guide
 subquestion: |
   
   Before you begin, you need to have the following information:
@@ -72,13 +72,13 @@ question: Basic information about Awards
 subquestion: |
   **Please note** that you will be asked about rates according to your relevant award, and these rates will depend on whether you are a Casual, Part-Time, or Full-Time worker.
   
-  A modern award is a document which sets out minimum terms and conditions of employment on top of the National Employment Standards (NES). 
+  A Modern Award is a document which sets out minimum terms and conditions of employment on top of the National Employment Standards (NES). 
   
   You can locate your award and further information on the 
   <a target="_self" href="https://www.fairwork.gov.au/awards-and-agreements/awards/find-my-award/">Australian Goverment Fair Work Ombudsman</a>, a WWC industrial officer will be able to assist you if required.
 
 buttons:
-  - I am ready to continue: continue
+  - Ready to continue: continue
 ---
 mandatory: true
 code: |
@@ -87,10 +87,10 @@ code: |
   consult_WWC
   award_known
 
-  if consult_WWC == 'Yes' and award_known == 'Yes':
+  if award_known == 'Yes':
     endpoints['filled_in']
     #endpoint to the summary document screen
-  elif consult_WWC == 'No' or award_known == 'No':
+  elif award_known == 'No':
     endpoints['not_filled_in']
     #endpoint to the "go to WWC screen"
 ---
