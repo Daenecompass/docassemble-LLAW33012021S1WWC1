@@ -64,15 +64,17 @@ under: |
   % endif
   % if what_allowance == 'Yes':
   %for allowance in allowances:
-  The Allowance|${allowances.name.text}
-  The Allowance Amount|${allowances.amount_allowance}
-  Award Allowance Amount|${allowances.allowance_award}
+  The Allowance|${allowance.name}
+  The Allowance Amount|${allowance.amount_allowance}
+  Award Allowance Amount|${allowance.allowance_award}
   %endfor
   % endif
   % if public_holiday_rates == 'Yes':
-  The Public Holiday|${what_public_holiday_rates}
-  Amount of Public Holiday Rates|${paid_public_holiday_rates}
-  Public Holiday Rates in Award|${public_holiday_award}
+  % for day in pubHol:
+  The Public Holiday|${day.name}
+  Amount of Public Holiday Rates|${day.paid_public_holiday_rates}
+  Public Holiday Rates in Award|${day.public_holiday_award}
+  %endfor
   % endif
   % if work_status == 'Full-Time' or work_status == 'Part-Time':
   % if leave_entitlement == 'Yes':
@@ -82,8 +84,11 @@ under: |
   % endif
   % endif
   % if other_payment == 'Yes':
-  Other Payment Type|${other_payment_info}
-  The amount of other payment|${other_payment_amount}
+  % for others in otherPayment:
+  Other Payment Type|${others.name}
+  The amount of other payment|${others.amount}
+  Amount Owed |${others.amount_award}
+  %endfor
   % endif
 
   

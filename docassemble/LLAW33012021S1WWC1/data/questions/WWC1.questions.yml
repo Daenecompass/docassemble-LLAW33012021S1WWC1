@@ -137,23 +137,14 @@ question: Penalty Rates
 fields:
   - What penalty rates are you receiving?: penRates[i].name.text
     required: false
-#    show if:
-#      variable: penalty_rates
-#      is: 'Yes'
     default: Sundays
   - What penalty rates amount did you receive?: penRates[i].paid_rates
     datatype: currency
     required: false
-#    show if:
-#      variable: penalty_rates
-#      is: 'Yes'
     default: 26
   - What are the penalty rates according to your relevant award?: penRates[i].penRateAward
     datatype: currency
     required: false
-#    show if:
-#      variable: penalty_rates
-#      is: 'Yes'
     default: 29.76
       
 list collect:
@@ -184,10 +175,11 @@ terms:
 ---
 question: Allowances
 fields:
-  - What allowances are you receiving?: allowances.name.text
-  - What amount have you received?: allowances.amount_allowance
+  - What allowances are you receiving?: allowances[i].name.text
+  - What amount have you received?: allowances[i].amount_allowance
     datatype: currency
-  - What are the allowances according to your relevant award?: allowances.allowance_award
+  - What are the allowances according to your relevant award?: allowances[i].allowance_award
+    datatype: currency
 
 list collect:
   enable: not allowances.has_been_gathered()
@@ -198,6 +190,12 @@ list collect:
 question: Would you like to add another allowance?
 yesno: allowances.there_is_another
 ---
+objects:
+ - pubHol: DAList.using(object_type=Thing, there_are_any=True, minimum_number = 2)
+---
+code: |
+  pubHol.appendObject()
+---
 question: Public Holiday 
 fields:
   - Are you getting paid any {public holiday rates}?: public_holiday_rates
@@ -205,23 +203,28 @@ fields:
     choices:
       - Yes
       - No
-  - What public holiday rates are you being paid?: what_public_holiday_rates
-    show if:
-      variable: public_holiday_rates
-      is: 'Yes'
-  - How much did you get paid for on this public holiday?: paid_public_holiday_rates
-    datatype: currency
-    show if: 
-      variable: public_holiday_rates
-      is: 'Yes' 
-  - What are the public holiday rates according to your relevant award?: public_holiday_award
-    datatype: currency
-    show if:
-      variable: public_holiday_rates
-      is: 'Yes'
 terms:
   public holiday rates: |
     Public holidays rates are special rates which are paid out on days such as Christmas, New Years Eve, Boxing Day, Anzac Day, etc.
+---
+question: Public Holiday
+fields:
+  - What public holiday rates are you being paid?: pubHol[i].name.text
+    required: false
+  - How much did you get paid for on this public holiday?: pubHol[i].paid_public_holiday_rates
+    datatype: currency
+    required: false
+  - What are the public holiday rates according to your relevant award?: pubHol[i].public_holiday_award
+    datatype: currency
+    required: false
+    
+list collect:
+  enable: not pubHol.has_been_gathered()
+  is final: False
+  allow delete: true
+---
+question: Would you like to add another public holiday?
+yesno: pubHol.there_is_another
 ---
 Show if:
     variable: work_status
@@ -255,6 +258,12 @@ terms:
   leave: |
     Paid leave is available for full-time or part-time workers. You may receive this paid leave for sick days, annual leave, compassionate leave, etc. 
 ---
+objects:
+ - otherPayment: DAList.using(object_type=Thing, there_are_any=True, minimum_number = 2)
+---
+code: |
+  otherPayment.appendObject()
+---
 question: Other
 fields:
   - Are you getting paid any {other type of payment} that has not already been specified?: other_payment
@@ -262,21 +271,27 @@ fields:
     choices:
       - Yes
       - No
-  - Please provide information on the other type of payment: other_payment_info
-    show if:
-      variable: other_payment
-      is: 'Yes'
-  - What is the amount received from this other type of payment?: other_payment_amount
-    datatype: currency
-    show if:
-      variable: other_payment
-      is: 'Yes'
-  - If applicable, What is the amount in the award?: other_amount_award
-    datatype: currency
-    show if: 
-      variable: other_payment
-      is: 'Yes'
+
 terms:
   other type of payment: |
     These may include commissions, redundancy pay, payment in lieu of termination of employment contract, superannuation, or interest.
+---
+question: Other
+fields:
+  - Please provide information on the other type of payment: otherPayment[i].name.text
+    required: false
+  - What is the amount received from this other type of payment?: otherPayment[i].amount
+    datatype: currency
+    required: false
+  - If applicable, What is the amount in the award?: otherPayment[i].amount_award
+    datatype: currency
+    required: false
+
+list collect:
+  enable: not otherPayment.has_been_gathered()
+  is final: False
+  allow delete: true
+---
+question: Would you like to add another payment?
+yesno: otherPayment.there_is_another
 ---
