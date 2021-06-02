@@ -109,7 +109,9 @@ buttons:
 event: endpoints['not_filled_in']
 question: You do not know your award
 subquestion: |
-  If you do not know what your relevant Award is, you are unable to use this guide. To exit out of this guide, please press exit. If you would like further assistance, please contact the Working Women's Centre.
+  If you do not know what your relevant Award is, you are unable to use this guide. Please visit the <a target="_self" href="https://www.fairwork.gov.au/awards-and-agreements/awards/find-my-award/">Australian Goverment Fair Work Ombudsman</a>, to find out your award is before returning to complete this guide. 
+  
+  To exit out of this guide, please press exit. If you would like further assistance, please contact the Working Women's Centre.
   
 buttons:
   - I wish to restart: restart
