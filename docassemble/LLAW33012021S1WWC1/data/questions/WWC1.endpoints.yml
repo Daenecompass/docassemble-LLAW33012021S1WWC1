@@ -18,6 +18,12 @@ subquestion: |
   
   Please send a copy of the document to the advising WWC industrial officer through the email option below.
 
+attachment:
+  name: WWC Summary Document
+  docx template file: WWC_FORM.docx 
+  valid formats:
+    - docx
+
 under: |
 
  We have collected the following data from you:
@@ -32,10 +38,10 @@ under: |
   Employeement status and details|Your Input
   ----|----
   Employee Status|${work_status}
-  % if work_status == 'Casual':
+  %if work_status == 'Casual':
   Regular hours|${regular_hours}
-  % endif
-  % if work_status == 'Full-Time' or work_status == 'Part-Time' or regular_hours == 'Yes':
+  %endif
+  %if work_status == 'Full-Time' or work_status == 'Part-Time' or regular_hours == 'Yes':
   How many hours worked|${hours_week}
   Amount per hour|${paid_hour}
   Award Amount per hour|${award_paid_hour}
@@ -52,54 +58,47 @@ under: |
   
   Other information|Your Input
   ----|----
-  % if paid_overtime == 'Yes':
+  %if paid_overtime == 'Yes':
   Hours in Overtime|${hours_overtime}
   Amount of Overtime|${amount_overtime}
   Overtime Rates in Award|${overtime_award}
-  % endif  
-  % if penalty_rates == 'Yes':
+  %endif  
+  %if penalty_rates == 'Yes':
   %for rate in penRates:
   What Penalty Rate|${rate.name}
   The amount of penalty rates|${rate.paid_rates}
   Award Penalty Rates|${rate.penRateAward}
   %endfor
-  % endif
-  % if what_allowance == 'Yes':
+  %endif
+  %if what_allowance == 'Yes':
   %for allowance in allowances:
   The Allowance|${allowance.name}
   The Allowance Amount|${allowance.amount_allowance}
   Award Allowance Amount|${allowance.allowance_award}
   %endfor
-  % endif
-  % if public_holiday_rates == 'Yes':
-  % for day in pubHol:
+  %endif
+  %if public_holiday_rates == 'Yes':
+  %for day in pubHol:
   The Public Holiday|${day.name}
   Amount of Public Holiday Rates|${day.paid_public_holiday_rates}
   Public Holiday Rates in Award|${day.public_holiday_award}
   %endfor
-  % endif
-  % if work_status == 'Full-Time' or work_status == 'Part-Time':
-  % if leave_entitlement == 'Yes':
-  % if leave_owing == 'Yes':
+  %endif
+  %if work_status == 'Full-Time' or work_status == 'Part-Time':
+  %if leave_entitlement == 'Yes':
+  %if leave_owing == 'Yes':
   How much leave is owed|${leave_owed}
-  % endif
-  % endif
-  % endif
-  % if other_payment == 'Yes':
-  % for others in otherPayment:
+  %endif
+  %endif
+  %endif
+  %if other_payment == 'Yes':
+  %for others in otherPayment:
   Other Payment Type|${others.name}
   The amount of other payment|${others.amount}
   Amount Owed |${others.amount_award}
   %endfor
-  % endif
+  %endif
 
-  
-#attachment:
-#  - name: WWC1 Summary Document
-#    docx template file: WWC_FORM.docx
-#    valid formats:
-#     - docx
-     
 buttons:
   - I wish to restart: restart
   - Exit: exit
