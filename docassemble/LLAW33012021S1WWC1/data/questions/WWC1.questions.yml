@@ -89,7 +89,7 @@ fields:
 ---
 question: Overtime
 fields:
-  - Are you being paid {overtime}?: paid_overtime
+  - Are you entitled to {overtime} payment?: paid_overtime
     datatype: radio
     choices:
       - Yes
@@ -124,7 +124,7 @@ code: |
 ---
 question: Penalty Rates
 fields:
-  - Are you being paid {penalty rates}?: penalty_rates 
+  - Are you entitled to {penalty rates}?: penalty_rates 
     datatype: radio
     choices:
       - Yes
@@ -134,6 +134,12 @@ terms:
     Penalty rates include Sundays, early mornings, late/night shifts.
 ---
 question: Penalty Rates
+subquestion: |
+  Below is a tool that helps you organise your **penalty rates** into separate sections.
+  
+  You can add as many separate penalty rates as applicable by clicking on the 'Add another' button at the bottom of the screen. 
+  
+  You may also wish to delete any sections by clicking on the 'Delete' button next to the relevant section.
 fields:
   - What penalty rates are you receiving?: penRates[i].name.text
     required: false
@@ -164,7 +170,7 @@ code: |
 ---
 question: Allowances
 fields:
-  - Are you getting paid any {allowances}?: what_allowance
+  - Are you entitled to any {allowances}?: what_allowance
     datatype: radio
     choices:
       - Yes
@@ -174,6 +180,13 @@ terms:
     Allowances includes things such as uniform costs and travel costs.
 ---
 question: Allowances
+subquestion: |
+  Below is a tool that helps you organise your **allowances** into separate sections.
+  
+  You can add as many separate allowances as applicable by clicking on the 'Add another' button at the bottom of the screen. 
+  
+  You may also wish to delete any sections by clicking on the 'Delete' button next to the relevant section.
+  
 fields:
   - What allowances are you receiving?: allowances[i].name.text
     default: Special clothing allowance
@@ -201,7 +214,7 @@ code: |
 ---
 question: Public Holiday 
 fields:
-  - Are you getting paid any {public holiday rates}?: public_holiday_rates
+  - Are you entitled to any {public holiday rates}?: public_holiday_rates
     datatype: radio
     choices:
       - Yes
@@ -211,6 +224,12 @@ terms:
     Public holidays rates are special rates which are paid out on days such as Christmas, New Years Eve, Boxing Day, Anzac Day, etc.
 ---
 question: Public Holiday
+subquestion: |
+  Below is a tool that helps you organise your **public holiday rates** into separate sections.
+  
+  You can add as many separate public holidays as applicable by clicking on the 'Add another' button at the bottom of the screen. 
+  
+  You may also wish to delete any sections by clicking on the 'Delete' button next to the relevant section.
 fields:
   - What public holiday rates are you being paid?: pubHol[i].name.text
     required: false
@@ -272,7 +291,7 @@ code: |
 ---
 question: Other
 fields:
-  - Are you getting paid any {other type of payment} that has not already been specified?: other_payment
+  - Are you entitled to any {other type of payment} that has not already been specified?: other_payment
     datatype: radio
     choices:
       - Yes
@@ -283,6 +302,12 @@ terms:
     These may include commissions, redundancy pay, payment in lieu of termination of employment contract, superannuation, or interest.
 ---
 question: Other
+subquestion: |
+  Below is a tool that helps you organise your **other types of payment** into separate sections.
+  
+  You can add as many separate other types of payments as applicable by clicking on the 'Add another' button at the bottom of the screen. 
+  
+  You may also wish to delete any sections by clicking on the 'Delete' button next to the relevant section.
 fields:
   - Please provide information on the other type of payment: otherPayment[i].name.text
     required: false
