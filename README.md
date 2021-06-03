@@ -6,6 +6,6 @@ This application will assist self-represented workers to be able to calculate th
 
 ---
 ## Author
-Tina Fotopoulos, Thao Luu, Sophie Potts, Tahlia Forster, and Angus Lau
+Tina Fotopoulos, Thao Luu, Sophie Potts, Tahlia Forster, Angus Lau, and
 Mark Ferraretto, mark.ferraretto@flinders.edu.au
 
