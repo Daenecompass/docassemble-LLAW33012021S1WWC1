@@ -10,6 +10,7 @@ objects:
 ---
 code: |  
   otDifference = overtime_award - amount_overtime
+  rtDifference = award_paid_hour - paid_hour
 ---
 event: endpoints['filled_in']
 question: Your Document is Ready!
@@ -22,11 +23,11 @@ subquestion: |
   
   Please send a copy of the document to the advising WWC industrial officer through the email option below.
 
-#attachment:
-#  name: WWC Summary Document
-#  docx template file: WWC_FORM.docx 
-#  valid formats:
-#    - docx
+attachment:
+  name: WWC Summary Document
+  docx template file: WWC_FORM.docx 
+  valid formats:
+      - docx
 
 under: |
 
@@ -49,6 +50,7 @@ under: |
   How many hours worked|${hours_week}
   Amount per hour|${currency(paid_hour)}
   Award Amount per hour|${currency(award_paid_hour)}
+  The difference|${currency(rtDifference)}
   %endif
   %if work_status == 'Casual' and regular_hours == 'No':
   Casual Hours|
