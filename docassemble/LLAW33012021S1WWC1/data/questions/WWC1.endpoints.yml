@@ -56,44 +56,58 @@ under: |
   %endfor
   %endif
   
-  Other information|Your Input
-  ----|----
   %if paid_overtime == 'Yes':
+  Overtime|Your Input
+  ----|----
   Hours in Overtime|${hours_overtime}
   Amount of Overtime|${amount_overtime}
   Overtime Rates in Award|${overtime_award}
   %endif  
+  
   %if penalty_rates == 'Yes':
+  Penalty Rates|Your Input
+  ----|----
   %for rate in penRates:
-  What Penalty Rate|${rate.name}
+  **What Penalty Rate|${rate.name}**
   The amount of penalty rates|${rate.paid_rates}
   Award Penalty Rates|${rate.penRateAward}
   %endfor
   %endif
+  
   %if what_allowance == 'Yes':
+  Allowances|Your Input
+  ----|----
   %for allowance in allowances:
-  The Allowance|${allowance.name}
+  **The Allowance|${allowance.name}**
   The Allowance Amount|${allowance.amount_allowance}
   Award Allowance Amount|${allowance.allowance_award}
   %endfor
   %endif
+  
   %if public_holiday_rates == 'Yes':
+  Public Holidays|Your Input
+  ----|----
   %for day in pubHol:
-  The Public Holiday|${day.name}
+  **The Public Holiday|${day.name}**
   Amount of Public Holiday Rates|${day.paid_public_holiday_rates}
   Public Holiday Rates in Award|${day.public_holiday_award}
   %endfor
   %endif
+  
   %if work_status == 'Full-Time' or work_status == 'Part-Time':
   %if leave_entitlement == 'Yes':
   %if leave_owing == 'Yes':
+  Leave|Your Input
   How much leave is owed|${leave_owed}
   %endif
   %endif
   %endif
+  
   %if other_payment == 'Yes':
+  Other Payments|Your Input
+  ----|----
   %for others in otherPayment:
-  Other Payment Type|${others.name}
+  **Other Payment Type|${others.name}**
   The amount of other payment|${others.amount}
   Amount Owed |${others.amount_award}
   %endfor
