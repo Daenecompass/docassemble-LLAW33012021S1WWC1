@@ -96,18 +96,21 @@ fields:
       - No
   - How much overtime (in hours) are you doing?: hours_overtime
     datatype: number
+    required: false
     show if:
       variable: paid_overtime
       is: 'Yes'
     default: 2
   - How much do you get paid in overtime?: amount_overtime
     datatype: currency
+    required: false
     show if:
       variable: paid_overtime
       is: 'Yes'
     default: 20
   - What are the Overtime Rates according to your relevant award?: overtime_award
     datatype: currency
+    required: false
     show if:
       variable: paid_overtime
       is: 'Yes'

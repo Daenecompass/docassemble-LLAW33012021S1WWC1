@@ -9,8 +9,8 @@ objects:
   - endpoints: DADict
 ---
 code: |  
-  otDifference = overtime_award - amount_overtime
   rtDifference = award_paid_hour - paid_hour
+  otDifference = overtime_award - amount_overtime
 ---
 event: endpoints['filled_in']
 question: Your Document is Ready!
@@ -25,7 +25,7 @@ subquestion: |
 
 attachment:
   name: WWC Summary Document
-  docx template file: WWC_FORM.docx 
+  docx template file: WWC_FORM_(1).docx 
   valid formats:
       - docx
 
@@ -50,7 +50,7 @@ under: |
   How many hours worked|${hours_week}
   Amount per hour|${currency(paid_hour)}
   Award Amount per hour|${currency(award_paid_hour)}
-  The difference|${currency(rtDifference)}
+  Difference|${currency(rtDifference)}
   %endif
   %if work_status == 'Casual' and regular_hours == 'No':
   Casual Hours|
