@@ -3,9 +3,13 @@
 ---
 include:
   - WWC1.questions.yml
+  - WWC1.casual.yml
 ---
 objects:
   - endpoints: DADict
+---
+code: |  
+  otDifference = overtime_award - amount_overtime
 ---
 event: endpoints['filled_in']
 question: Your Document is Ready!
@@ -18,11 +22,11 @@ subquestion: |
   
   Please send a copy of the document to the advising WWC industrial officer through the email option below.
 
-attachment:
-  name: WWC Summary Document
-  docx template file: WWC_FORM.docx 
-  valid formats:
-    - docx
+#attachment:
+#  name: WWC Summary Document
+#  docx template file: WWC_FORM.docx 
+#  valid formats:
+#    - docx
 
 under: |
 
@@ -41,7 +45,7 @@ under: |
   %if work_status == 'Casual':
   Regular hours|${regular_hours}
   %endif
-  %if work_status == 'Full-Time' or work_status == 'Part-Time' or regular_hours == 'Yes':
+  %if work_status == 'Full-Time' or work_status == 'Part-Time' or regular_hours ==  'Yes':
   How many hours worked|${hours_week}
   Amount per hour|${paid_hour}
   Award Amount per hour|${award_paid_hour}
@@ -51,8 +55,9 @@ under: |
   %for item in casualHours:
   Week Starting|${item.name}
   Hours Worked|${item.hours} 
-  Hourly Pay Rate|${item.pay}
-  Award Pay Rate|${item.award}
+  Hourly Pay Rate|${currency(item.pay)}
+  Award Pay Rate|${currency(item.award)}
+  Difference|${currency(item.difference)}
   %endfor
   %endif
   
@@ -60,17 +65,19 @@ under: |
   Overtime|Your Input
   ----|----
   Hours in Overtime|${hours_overtime}
-  Amount of Overtime|${amount_overtime}
-  Overtime Rates in Award|${overtime_award}
+  Amount of Overtime|${currency(amount_overtime)}
+  Overtime Rates in Award|${currency(overtime_award)}
+  Difference|${currency(otDifference)}
   %endif  
-  
+
   %if penalty_rates == 'Yes':
   Penalty Rates|Your Input
   ----|----
   %for rate in penRates:
-  **What Penalty Rate|${rate.name}**
-  The amount of penalty rates|${rate.paid_rates}
-  Award Penalty Rates|${rate.penRateAward}
+  **What Penalty Rate**|**${rate.name}**
+  The amount of penalty rates|${currency(rate.paid_rates)}
+  Award Penalty Rates|${currency(rate.penRateAward)}
+  Difference|${currency(rate.difference)}
   %endfor
   %endif
   
@@ -78,9 +85,10 @@ under: |
   Allowances|Your Input
   ----|----
   %for allowance in allowances:
-  **The Allowance|${allowance.name}**
-  The Allowance Amount|${allowance.amount_allowance}
-  Award Allowance Amount|${allowance.allowance_award}
+  **The Allowance**|**${allowance.name}**
+  The Allowance Amount|${currency(allowance.amount_allowance)}
+  Award Allowance Amount|${currency(allowance.allowance_award)}
+  Difference|${currency(allowance.difference)}
   %endfor
   %endif
   
@@ -88,9 +96,10 @@ under: |
   Public Holidays|Your Input
   ----|----
   %for day in pubHol:
-  **The Public Holiday|${day.name}**
-  Amount of Public Holiday Rates|${day.paid_public_holiday_rates}
-  Public Holiday Rates in Award|${day.public_holiday_award}
+  **The Public Holiday**|**${day.name}**
+  Amount of Public Holiday Rates|${currency(day.paid_public_holiday_rates)}
+  Public Holiday Rates in Award|${currency(day.public_holiday_award)}
+  Difference|${currency(day.difference)}
   %endfor
   %endif
   
@@ -98,7 +107,8 @@ under: |
   %if leave_entitlement == 'Yes':
   %if leave_owing == 'Yes':
   Leave|Your Input
-  How much leave is owed|${leave_owed}
+  ----|----
+  How much leave is owed|${currency(leave_owed)}
   %endif
   %endif
   %endif
@@ -107,9 +117,10 @@ under: |
   Other Payments|Your Input
   ----|----
   %for others in otherPayment:
-  **Other Payment Type|${others.name}**
-  The amount of other payment|${others.amount}
-  Amount Owed |${others.amount_award}
+  **Other Payment Type**|**${others.name}**
+  The amount of other payment|${currency(others.amount)}
+  Amount Owed |${currency(others.amount_award)}
+  Difference|${currency(others.difference)}
   %endfor
   %endif
 

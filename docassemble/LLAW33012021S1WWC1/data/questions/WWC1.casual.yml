@@ -22,8 +22,6 @@ subquestion: |
   
   You may also wish to delete any sections by clicking on the 'Delete' button next to the relevant section.
 
-# i want it to recurse onto one page
-
 fields:
  - Week Starting: casualHours[i].name.text
    datatype: date
@@ -47,6 +45,9 @@ list collect:
   is final: False
   allow delete: False
   
+---
+code: |  
+  casualHours[i].difference = casualHours[i].award - casualHours[i].pay
 ---
 question: Would you like to add another week?
 yesno: casualHours.there_is_another

@@ -116,12 +116,6 @@ terms:
   overtime: |
      Overtime is when you work outside of the previously agreed number of hours
 ---
-objects:
- - penRates: DAList.using(object_type=Thing, there_are_any=True, minimum_number = 2)
----
-code: |
-  penRates.appendObject()
----
 question: Penalty Rates
 fields:
   - Are you entitled to {penalty rates}?: penalty_rates 
@@ -132,6 +126,12 @@ fields:
 terms: 
   penalty rates: |
     Penalty rates include Sundays, early mornings, late/night shifts.
+---
+objects:
+ - penRates: DAList.using(object_type=Thing, there_are_any=True, minimum_number = 2)
+---
+code: |
+  penRates.appendObject()
 ---
 question: Penalty Rates
 subquestion: |
@@ -156,8 +156,10 @@ fields:
 list collect:
   enable: not penRates.has_been_gathered()
   is final: False
-  allow delete: true
-    
+  allow delete: False
+---
+code: |
+  penRates[i].difference = penRates[i].penRateAward - penRates[i].paid_rates
 ---
 question: Would you like to add another penalty rate day?
 yesno: penRates.there_is_another
@@ -200,8 +202,10 @@ fields:
 list collect:
   enable: not allowances.has_been_gathered()
   is final: False
-  allow delete: true
-    
+  allow delete: False
+---
+code: |
+  allowances[i].difference = allowances[i].allowance_award - allowances[i].amount_allowance
 ---
 question: Would you like to add another allowance?
 yesno: allowances.there_is_another
@@ -246,7 +250,10 @@ fields:
 list collect:
   enable: not pubHol.has_been_gathered()
   is final: False
-  allow delete: true
+  allow delete: False
+---
+code: |
+  pubHol[i].difference = pubHol[i].public_holiday_award - pubHol[i].paid_public_holiday_rates
 ---
 question: Would you like to add another public holiday?
 yesno: pubHol.there_is_another
@@ -324,7 +331,10 @@ fields:
 list collect:
   enable: not otherPayment.has_been_gathered()
   is final: False
-  allow delete: true
+  allow delete: False
+---
+code: |
+  otherPayment[i].difference = otherPayment[i].amount_award - otherPayment[i].amount
 ---
 question: Would you like to add another payment?
 yesno: otherPayment.there_is_another
