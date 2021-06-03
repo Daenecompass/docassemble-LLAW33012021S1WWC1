@@ -2,8 +2,7 @@
 
 ---
 # WWC Money Claim Form Guide
-This application will be providing a guide to users. 
-Where they will be filling the details of their awards and what they are being paid. 
+This application will assist self-represented workers to be able to calculate the difference between the amount they have been paid and the amount they are entitled to according to their award. The application will consolidate the relevant information needed to complete the SAET A38 Money Claim Form.
 
 ---
 ## Author
