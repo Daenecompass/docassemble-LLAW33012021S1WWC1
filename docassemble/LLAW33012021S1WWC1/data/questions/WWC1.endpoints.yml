@@ -25,7 +25,7 @@ subquestion: |
 
 attachment:
   name: WWC Summary Document
-  docx template file: WWC_FORM_(1).docx 
+  docx template file: WWC_FORM.docx 
   valid formats:
       - docx
 

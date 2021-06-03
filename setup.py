@@ -45,7 +45,7 @@ def find_package_data(where='.', package='', exclude=standard_exclude, exclude_d
 setup(name='docassemble.LLAW33012021S1WWC1',
       version='0.0.1',
       description=('A docassemble extension.'),
-      long_description='# docassemble.LLAW33012021S1WWC1\r\n\r\n---\r\n# WWC Money Claim Form Guide\r\nThis application will be providing a guide to users. \r\nWhere they will be filling the details of their awards and what they are being paid. \r\n\r\n---\r\n## Author\r\n\r\nMark Ferraretto, mark.ferraretto@flinders.edu.au\r\n\r\n',
+      long_description='# docassemble.LLAW33012021S1WWC1\r\n\r\n---\r\n# WWC Money Claim Form Guide\r\nThis application will be providing a guide to users. \r\nWhere they will be filling the details of their awards and what they are being paid. \r\n\r\n---\r\n## Author\r\nTina Fotopoulos, Thao Luu, Sophie Potts, Tahlia Forster and Angus Lau\r\nMark Ferraretto, mark.ferraretto@flinders.edu.au\r\n\r\n',
       long_description_content_type='text/markdown',
       author='Mark Ferraretto',
       author_email='mark.ferraretto@flinders.edu.au',

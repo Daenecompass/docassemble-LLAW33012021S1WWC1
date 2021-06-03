@@ -7,6 +7,6 @@ Where they will be filling the details of their awards and what they are being p
 
 ---
 ## Author
-
+Tina Fotopoulos, Thao Luu, Sophie Potts, Tahlia Forster and Angus Lau
 Mark Ferraretto, mark.ferraretto@flinders.edu.au
 
