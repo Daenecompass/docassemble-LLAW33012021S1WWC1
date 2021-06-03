@@ -8,10 +8,6 @@ include:
 objects:
   - endpoints: DADict
 ---
-code: |  
-  rtDifference = award_paid_hour - paid_hour
-  otDifference = overtime_award - amount_overtime
----
 event: endpoints['filled_in']
 question: Your Document is Ready!
 subquestion: |

@@ -87,6 +87,9 @@ fields:
     datatype: currency
     default: 19.84
 ---
+code: |
+  rtDifference = award_paid_hour - paid_hour
+---
 question: Overtime
 fields:
   - Are you entitled to {overtime} payment?: paid_overtime
@@ -118,6 +121,9 @@ fields:
 terms: 
   overtime: |
      Overtime is when you work outside of the previously agreed number of hours.
+---
+code: |  
+  otDifference = overtime_award - amount_overtime
 ---
 question: Penalty Rates
 fields:
