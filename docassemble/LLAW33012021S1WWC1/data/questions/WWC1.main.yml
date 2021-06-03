@@ -5,6 +5,23 @@ include:
   - WWC1.endpoints.yml
   - WWC1.casual.yml
 ---
+metadata: 
+  title: |
+    WWC Money Claim Guide
+  short title: |
+    WWC
+  tab title: |
+    WWC Money Claim Guide
+  description: |
+    A guide to the SAET Money Forms claim 
+  authors:
+    - name: Angus Lau
+    - name: Sophie Potts
+    - name: Tahlia Forster
+    - name: Tina Fotopoulos
+    - name: Thao Luu
+    - organisation: Flinders University
+---
 default screen parts:
   post: |
     <div style="display: flex; height: 200px; align-items: flex-end; flex-direction: row-reverse">
