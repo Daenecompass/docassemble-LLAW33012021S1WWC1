@@ -45,22 +45,22 @@ fields:
 under: |
   Full time employee:
 
-	 * Works around, or more than, 38 hours a week
-	 * Can be permanent or contracted
-	 * Entitled to paid annual, sick or carer leave
+	 * Works around, or more than, 38 hours a week.
+	 * Can be permanent or contracted.
+	 * Entitled to paid annual, sick, or carer leave.
 
   Part time employee:
 	 
-   * Works less than 38 hours a week
-	 * Usually works regular hours each week
-	 * Can be permanent or contracted
-	 * Entitled to paid annual, sick or carer leave
+   * Works less than 38 hours a week.
+	 * Usually works regular hours each week.
+	 * Can be permanent or contracted.
+	 * Entitled to paid annual, sick, or carer leave.
 
   Casual employee:
 	 
    * Employee with no fixed pattern of work, and no promises of continued work.
-	 * No permanent employment when compared to full or part time
-   * Not entitled to paid leave 
+	 * No permanent employment when compared to full or part time.
+   * Not entitled to paid leave. 
 ---
 show if:
       variable: work_status
@@ -117,7 +117,7 @@ fields:
     default: 29.76
 terms: 
   overtime: |
-     Overtime is when you work outside of the previously agreed number of hours
+     Overtime is when you work outside of the previously agreed number of hours.
 ---
 question: Penalty Rates
 fields:
