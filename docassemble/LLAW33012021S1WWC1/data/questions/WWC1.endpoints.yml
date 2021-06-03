@@ -47,8 +47,8 @@ under: |
   %endif
   %if work_status == 'Full-Time' or work_status == 'Part-Time' or regular_hours ==  'Yes':
   How many hours worked|${hours_week}
-  Amount per hour|${paid_hour}
-  Award Amount per hour|${award_paid_hour}
+  Amount per hour|${currency(paid_hour)}
+  Award Amount per hour|${currency(award_paid_hour)}
   %endif
   %if work_status == 'Casual' and regular_hours == 'No':
   Casual Hours|
