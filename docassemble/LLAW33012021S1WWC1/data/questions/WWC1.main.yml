@@ -1,24 +1,113 @@
-# This is the main file that includes: the welcome screen; legal disclaimer; mandatory question blocks; potentially event: function
+# This is the main file that includes: the welcome screen; legal disclaimer; mandatory code block that asks for basic information such as their name, whether they've consulted a WWC industrial officer, whether their award is known and the colour specs. 
 ---
 include:
   - WWC1.questions.yml
   - WWC1.endpoints.yml
   - WWC1.casual.yml
 ---
+metadata: 
+  title: |
+    WWC Money Claim Guide
+  short title: |
+    WWC
+  tab title: |
+    WWC Money Claim Guide
+  description: |
+    A guide to the SAET Money Forms claim 
+  authors:
+    - name: Angus Lau
+    - name: Sophie Potts
+    - name: Tahlia Forster
+    - name: Tina Fotopoulos
+    - name: Thao Luu
+    - organisation: Flinders University
+---
+default screen parts:
+  post: |
+    <div style="display: flex; height: 200px; align-items: flex-end; flex-direction: row-reverse">
+    <div style="margin: 5px"><img src="https://staff.flinders.edu.au/etc.clientlibs/flinders/clientlibs/clientlib-site/resources/images/flinderuni_main_logo_black.png" height="40">
+    </div>
+    <div style="margin: 5px; text-align: right">
+    <cite><small><i>
+    Developed by Flinders University in collaboration with Working Women's Centre
+    </i></small></cite>
+    </div>
+    </div>
+---
+objects: 
+  - WWClogo: DAStaticFile.using(filename='wwc_logo.png')
+---
+features: 
+  css: WWC.css
+  debug: False
+  hide standard menu: True
+---
 mandatory: True
-question: WWC Money Claim Form
+code: | 
+    WWCLogostring = '<div class="media"><img src="{}" class="mr-8" height="65"><div class="media-body"></div></div>'.format(WWClogo.url_for())
+    
+    set_parts(logo= WWCLogostring)
+---
+mandatory: True
+question: WWC Money Claim Guide
 subquestion: |
-  Welcome to the WWC Money Claim Form application.
+  Welcome to the WWC Money Claim Guide. 
   
-  [add text here] 
+  This application will help with completing the South Australian Employment Court Money Claims form by collecting the required information.
   
-  ***Disclaimer:***  
-  **This advice is not to be taken as legal advice and is not a substitute
-  for you seeking independent legal advice.**
-
-  If you continue you accept these terms.
+  ***Disclaimer:***
+  
+  **This advice should not to be taken as legal advice and is not a substitute
+  for seeking independent legal advice.**
+ 
+   If you do not agree and wish to exit, you will be directed back to the WWC website.
 buttons:
   - I agree and wish to continue: continue
   - I do not agree and wish to exit: exit
-   url: https://wwcsa.org.au/
+    url: https://wwcsa.org.au/
+---
+mandatory: True
+question: Information you will need to use this guide
+subquestion: |
+  
+  Before you begin, you need to have the following information:
+  
+  * Your relevant award
+  * Wages
+  * Overtime rates
+  * Penalty rates
+  * Allowances
+  * Public Holiday
+  * Leave
+  * Other relevant payments.
+ 
+buttons:
+  - Ready to Continue: continue
+---
+mandatory: True
+question: Basic information about Awards
+subquestion: |
+  **Please note** that you will be asked about rates according to your relevant award, and these rates will depend on whether you are a Casual, Part-Time, or Full-Time worker.
+  
+  A Modern Award is a document which sets out minimum terms and conditions of employment on top of the National Employment Standards (NES). 
+  
+  You can locate your award and further information on the 
+  <a target="_self" href="https://www.fairwork.gov.au/awards-and-agreements/awards/find-my-award/">Australian Goverment Fair Work Ombudsman website</a>, or you can <a target="_self" href="https://wwcsa.org.au/">contact a WWC industrial officer</a> for further assistance.
+
+buttons:
+  - Ready to continue: continue
+---
+mandatory: true
+code: |
+  first_name
+  last_name
+  consult_WWC
+  award_known
+
+  if award_known == 'Yes':
+    endpoints['filled_in']
+    #endpoint to the summary document screen
+  elif award_known == 'No':
+    endpoints['not_filled_in']
+    #endpoint to the "go to WWC screen"
 ---
