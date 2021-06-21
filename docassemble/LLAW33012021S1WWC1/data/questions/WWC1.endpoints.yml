@@ -1,35 +1,148 @@
 # summary document available for dl and email with link
 # to the SAET forms page 
 ---
+include:
+  - WWC1.questions.yml
+  - WWC1.casual.yml
+---
 objects:
   - endpoints: DADict
 ---
-event: endpoint['']
+event: endpoints['filled_in']
 question: Your Document is Ready!
 subquestion: |
+  Thank you for using this guide ${ first_name + ' '+ last_name }. 
   
-
-  Thank you for using this application ____. 
+  Below is a downloadable docx file of WWC Money Claim Guide that contains the data you have given us.
   
-  We have collected the following data from you:
+  The document will also contain the calculations for the difference between what you have been paid and what you are entitled to according to your award.
   
-  Information|Your Input
-  -----------|----------
-               | ${ }
+  You may wish to view these calculations below.
   
-  Below is a downloadable docx file of ___. 
-  
-  *include message re sending a copy of the doc to the relevant WWC industrial officer as well as a copy to their own email address
+  Please send a copy of the document to the advising WWC industrial officer through the email option below.
 
 attachment:
-  - name: WWC1 Summary Document
-    docx template file: [name of file].docx
-    valid formats:
-      - docx # Emma wants it available as word doc so that it can be edited
+  name: WWC Summary Document
+  docx template file: WWC_FORM.docx 
+  valid formats:
+      - docx
+
+under: |
+
+ We have collected the following data from you:
+  
+  Your Details|Your Input
+  -----|----
+  First Name|${first_name}
+  Last Name|${last_name}
+  Consulted an Industrial Worker at WWC|${consult_WWC}
+  Name of award|${the_award}
+  
+  Employeement status and details|Your Input
+  ----|----
+  Employee Status|${work_status}
+  %if work_status == 'Casual':
+  Regular hours|${regular_hours}
+  %endif
+  %if work_status == 'Full-Time' or work_status == 'Part-Time' or regular_hours ==  'Yes':
+  How many hours worked|${hours_week}
+  Amount per hour|${currency(paid_hour)}
+  Award Amount per hour|${currency(award_paid_hour)}
+  Difference|${currency(rtDifference)}
+  %endif
+  %if work_status == 'Casual' and regular_hours == 'No':
+  Casual Hours|
+  %for item in casualHours:
+  Week Starting|${item.name}
+  Hours Worked|${item.hours} 
+  Hourly Pay Rate|${currency(item.pay)}
+  Award Pay Rate|${currency(item.award)}
+  Difference|${currency(item.difference)}
+  %endfor
+  %endif
+  
+  %if paid_overtime == 'Yes':
+  Overtime|Your Input
+  ----|----
+  Hours in Overtime|${hours_overtime}
+  Amount of Overtime|${currency(amount_overtime)}
+  Overtime Rates in Award|${currency(overtime_award)}
+  Difference|${currency(otDifference)}
+  %endif  
+
+  %if penalty_rates == 'Yes':
+  Penalty Rates|Your Input
+  ----|----
+  %for rate in penRates:
+  **What Penalty Rate**|**${rate.name}**
+  The amount of penalty rates|${currency(rate.paid_rates)}
+  Award Penalty Rates|${currency(rate.penRateAward)}
+  Difference|${currency(rate.difference)}
+  %endfor
+  %endif
+  
+  %if what_allowance == 'Yes':
+  Allowances|Your Input
+  ----|----
+  %for allowance in allowances:
+  **The Allowance**|**${allowance.name}**
+  The Allowance Amount|${currency(allowance.amount_allowance)}
+  Award Allowance Amount|${currency(allowance.allowance_award)}
+  Difference|${currency(allowance.difference)}
+  %endfor
+  %endif
+  
+  %if public_holiday_rates == 'Yes':
+  Public Holidays|Your Input
+  ----|----
+  %for day in pubHol:
+  **The Public Holiday**|**${day.name}**
+  Amount of Public Holiday Rates|${currency(day.paid_public_holiday_rates)}
+  Public Holiday Rates in Award|${currency(day.public_holiday_award)}
+  Difference|${currency(day.difference)}
+  %endfor
+  %endif
+  
+  %if work_status == 'Full-Time' or work_status == 'Part-Time':
+  %if leave_entitlement == 'Yes':
+  %if leave_owing == 'Yes':
+  Leave|Your Input
+  ----|----
+  How much leave is owed|${currency(leave_owed)}
+  %endif
+  %endif
+  %endif
+  
+  %if other_payment == 'Yes':
+  Other Payments|Your Input
+  ----|----
+  %for others in otherPayment:
+  **Other Payment Type**|**${others.name}**
+  The amount of other payment|${currency(others.amount)}
+  Amount Owed |${currency(others.amount_award)}
+  Difference|${currency(others.difference)}
+  %endfor
+  %endif
+
 buttons:
   - I wish to restart: restart
   - Exit: exit
-    url: 
-    
-# Emma wants both a link to the WWC website as well as the SAET forms webpage
+    url: https://wwcsa.org.au/
+  - SAET Website: exit
+    url: https://www.saet.sa.gov.au/forms/
+---
+event: endpoints['not_filled_in']
+question: You do not know your award
+subquestion: |
+  You need to know what your relevant award is in order to use this guide. Please visit the <a target="_self" href="https://www.fairwork.gov.au/awards-and-agreements/awards/find-my-award/">Australian Goverment Fair Work Ombudsman website</a> to find out what your award is before returning to complete this guide. 
+  
+  Alternatively, you can contact a WWC industrial officer for further assistance.
+  
+  To exit out of this guide, please press exit.
+  
+buttons:
+  - I wish to restart: restart
+  - Exit: exit
+  - Contact the Working Women's Centre: exit
+    url: https://wwcsa.org.au/
 ---

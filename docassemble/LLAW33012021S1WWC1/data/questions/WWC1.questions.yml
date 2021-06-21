@@ -5,79 +5,346 @@
 # the logic flow easier to identify as it's not
 # cluttered with questions
 #
-# NOTE:  This file should not contain any mandatory
-# question blocks
+# NOTE:  This file should not contain any mandatory question blocks
+# checklist: name; consult with WWC; award known/unknown; type of employee; regular hours; hours per week; $ per hour; over time rates + award; penalty rates + award; allowances + award; public holiday rates + award; leave entitlement + leave owing; other + award if applicable.
 ---
-# full name and award 
 question: Details
 fields:
-  - Full name: [insert variable]
-  - What is your award: [insert variable]
+  - First Name: first_name
+    default: Anne
+  - Last Name: last_name
+    default: Faulkner
+  - Have you consulted an Industrial worker at WWC?: consult_WWC
+    datatype: radio
+    choices:
+      - Yes
+      - No
+  # no answer will be sent to different end point directing them back to the WWC and 
+  # how they can contact WWC
+  - Do you know your award?: award_known
+    datatype: radio
+    choices:
+      - Yes
+      - No
+  # no answer will be sent to another endpoint prompting user to consult WWC because award must be known
+  - What is your award: the_award
+    show if:
+      variable: award_known
+      is: 'Yes'
+    default: Restaurant Industry Award 2020
 ---
-# Work status
-# how many hours do you work a week
-# how much do you get paid per hour
 question: Work Status
 fields:
-  - What type of employee are you?: [insert variable]
-  choices:
-    - Casual
-    - Part-Time
-    - Full-Time
-  - How many hours do you work a week?: [insert variable]
-  - How much do you get paid per hour?: [insert variable]
-    datatype: currency
+  - What type of employee are you?: work_status
+    datatype: radio
+    choices:
+      - Casual
+      # casual will be sent to Regular hours screen
+      - Part-Time
+      - Full-Time
+under: |
+  Full time employee:
+
+	 * Works around, or more than, 38 hours a week.
+	 * Can be permanent or contracted.
+	 * Entitled to paid annual, sick, or carer leave.
+
+  Part time employee:
+	 
+   * Works less than 38 hours a week.
+	 * Usually works regular hours each week.
+	 * Can be permanent or contracted.
+	 * Entitled to paid annual, sick, or carer leave.
+
+  Casual employee:
+	 
+   * Employee with no fixed pattern of work, and no promises of continued work.
+	 * No permanent employment when compared to full or part time.
+   * Not entitled to paid leave. 
 ---
-# allowances
-# are you getting allowances
-# if yes, how much are you getting in allowances?
-question: Allowances
+show if:
+      variable: work_status
+      is: 'Casual'
+      
+question: Regular Hours
 fields:
-  - Are you getting allowances?: [insert varaible]
+  - Do you work regular hours?: regular_hours
     datatype: radio
     choices:
       - Yes
       - No
-  - How much are you getting in allowances?: [insert variable]
-    datatype: currency
-    show if:
-      variable: [allowance variable]
-      is: 'Yes'
 ---
-# penalty rates
-# are you getting penalty rates
-# if yes, what are you getting paid per hour on penalty rate days?
-question: Penalty Rates
+# not sure how to tie Casual back into this if regular is yes 
+question: Working Hours
 fields:
-  - Are you being paid penalty rates?: [insert varaible]
-    datatype: radio
-    choices:
-      - Yes
-      - No
-  - What are you getting paid per hour on penalty rate dates?: [insert variable]
+  - How many hours do you work a week?: hours_week
+    datatype: number
+    default: 38
+  - How much do you get paid per hour?: paid_hour
     datatype: currency
-    show if:
-      variable: [penalty variable]
-      is: 'Yes'
+    default: 15
+  - How much should you be getting paid according to your award?: award_paid_hour
+    datatype: currency
+    default: 19.84
 ---
-# over time
-# are you being paid overtime?
-# how much overtime are you doing?
-# how much do you get paid in overtime?
+code: |
+  rtDifference = award_paid_hour - paid_hour
+---
 question: Overtime
 fields:
-  - Are you being paid overtime?: [insert varaible]
+  - Are you entitled to {overtime} payment?: paid_overtime
     datatype: radio
     choices:
       - Yes
       - No
-  - How much overtime (in hours) are you doing?: [insert variable]
+  - How much overtime (in hours) are you doing?: hours_overtime
+    datatype: number
+    required: false
     show if:
-      variable: [overtime variable]
+      variable: paid_overtime
       is: 'Yes'
-  - How much do you get paid in overtime?: [insert variable]
+    default: 2
+  - How much do you get paid in overtime?: amount_overtime
+    datatype: currency
+    required: false
+    show if:
+      variable: paid_overtime
+      is: 'Yes'
+    default: 20
+  - What are the Overtime Rates according to your relevant award?: overtime_award
+    datatype: currency
+    required: false
+    show if:
+      variable: paid_overtime
+      is: 'Yes'
+    default: 29.76
+terms: 
+  overtime: |
+     Overtime is when you work outside of the previously agreed number of hours.
+---
+code: |  
+  otDifference = overtime_award - amount_overtime
+---
+question: Penalty Rates
+fields:
+  - Are you entitled to {penalty rates}?: penalty_rates 
+    datatype: radio
+    choices:
+      - Yes
+      - No
+terms: 
+  penalty rates: |
+    Penalty rates include Sundays, early mornings, late/night shifts.
+---
+objects:
+ - penRates: DAList.using(object_type=Thing, there_are_any=True, minimum_number = 2)
+---
+code: |
+  penRates.appendObject()
+---
+question: Penalty Rates
+subquestion: |
+  Below is a tool that helps you organise your **penalty rates** into separate sections.
+  
+  You can add as many separate penalty rates as applicable by clicking on the 'Add another' button at the bottom of the screen. 
+  
+  You may also wish to delete any sections by clicking on the 'Delete' button next to the relevant section.
+fields:
+  - What penalty rates are you receiving?: penRates[i].name.text
+    required: false
+    default: Sundays
+  - What penalty rates amount did you receive?: penRates[i].paid_rates
+    datatype: currency
+    required: false
+    default: 26
+  - What are the penalty rates according to your relevant award?: penRates[i].penRateAward
+    datatype: currency
+    required: false
+    default: 29.76
+      
+list collect:
+  enable: not penRates.has_been_gathered()
+  is final: False
+  allow delete: False
+---
+code: |
+  penRates[i].difference = penRates[i].penRateAward - penRates[i].paid_rates
+---
+question: Would you like to add another penalty rate day?
+yesno: penRates.there_is_another
+---
+objects:
+ - allowances: DAList.using(object_type=Thing, there_are_any=True, minimum_number = 2)
+---
+code: |
+  allowances.appendObject()
+---
+question: Allowances
+fields:
+  - Are you entitled to any {allowances}?: what_allowance
+    datatype: radio
+    choices:
+      - Yes
+      - No
+terms:
+  allowances: |
+    Allowances includes things such as uniform costs and travel costs.
+---
+question: Allowances
+subquestion: |
+  Below is a tool that helps you organise your **allowances** into separate sections.
+  
+  You can add as many separate allowances as applicable by clicking on the 'Add another' button at the bottom of the screen. 
+  
+  You may also wish to delete any sections by clicking on the 'Delete' button next to the relevant section.
+  
+fields:
+  - What allowances are you receiving?: allowances[i].name.text
+    default: Special clothing allowance
+  - What amount have you received?: allowances[i].amount_allowance
+    datatype: currency
+    default: 30
+  - What are the allowances according to your relevant award?: allowances[i].allowance_award
+    datatype: currency
+    default: 45
+
+list collect:
+  enable: not allowances.has_been_gathered()
+  is final: False
+  allow delete: False
+---
+code: |
+  allowances[i].difference = allowances[i].allowance_award - allowances[i].amount_allowance
+---
+question: Would you like to add another allowance?
+yesno: allowances.there_is_another
+---
+objects:
+ - pubHol: DAList.using(object_type=Thing, there_are_any=True, minimum_number = 2)
+---
+code: |
+  pubHol.appendObject()
+---
+question: Public Holiday 
+fields:
+  - Are you entitled to any {public holiday rates}?: public_holiday_rates
+    datatype: radio
+    choices:
+      - Yes
+      - No
+terms:
+  public holiday rates: |
+    Public holidays rates are special rates which are paid out on days such as Christmas, New Years Eve, Boxing Day, Anzac Day, etc.
+---
+question: Public Holiday
+subquestion: |
+  Below is a tool that helps you organise your **public holiday rates** into separate sections.
+  
+  You can add as many separate public holidays as applicable by clicking on the 'Add another' button at the bottom of the screen. 
+  
+  You may also wish to delete any sections by clicking on the 'Delete' button next to the relevant section.
+fields:
+  - What public holiday rates are you being paid?: pubHol[i].name.text
+    required: false
+    default: Christmas Day
+  - How much did you get paid for on this public holiday?: pubHol[i].paid_public_holiday_rates
+    datatype: currency
+    required: false
+    default: 30
+  - What are the public holiday rates according to your relevant award?: pubHol[i].public_holiday_award
+    datatype: currency
+    required: false
+    default: 50
+    
+list collect:
+  enable: not pubHol.has_been_gathered()
+  is final: False
+  allow delete: False
+---
+code: |
+  pubHol[i].difference = pubHol[i].public_holiday_award - pubHol[i].paid_public_holiday_rates
+---
+question: Would you like to add another public holiday?
+yesno: pubHol.there_is_another
+---
+Show if:
+    variable: work_status
+    is: 'Full-Time or Part-Time'
+
+question: Leave Entitlement
+fields:
+    
+  - Are you entitled to {leave}?: leave_entitlement
+    datatype: radio
+    choices:
+      - Yes
+      - No
+  - Do you have leave owing to you?: leave_owing
+    datatype: radio
+    choices:
+      - Yes
+      - No
+    show if:
+      variable: leave_entitlement
+      is: 'Yes'
+  - How much leave is owed to you?: leave_owed
     datatype: currency
     show if:
-      variable: [overtime variable]
+      variable: leave_owing
       is: 'Yes'
+    default: 1507.6
+under:
+    Please note that upon end of employment, annual leave will be paid out to you and personal leave will not.
+terms:
+  leave: |
+    Paid leave is available for full-time or part-time workers. You may receive this paid leave for sick days, annual leave, compassionate leave, etc. 
+---
+objects:
+ - otherPayment: DAList.using(object_type=Thing, there_are_any=True, minimum_number = 2)
+---
+code: |
+  otherPayment.appendObject()
+---
+question: Other
+fields:
+  - Are you entitled to any {other type of payment} that has not already been specified?: other_payment
+    datatype: radio
+    choices:
+      - Yes
+      - No
+
+terms:
+  other type of payment: |
+    These may include commissions, redundancy pay, payment in lieu of termination of employment contract, superannuation, or interest.
+---
+question: Other
+subquestion: |
+  Below is a tool that helps you organise your **other types of payment** into separate sections.
+  
+  You can add as many separate other types of payments as applicable by clicking on the 'Add another' button at the bottom of the screen. 
+  
+  You may also wish to delete any sections by clicking on the 'Delete' button next to the relevant section.
+fields:
+  - Please provide information on the other type of payment: otherPayment[i].name.text
+    required: false
+    default: Redundancy pay
+  - What is the amount received from this other type of payment?: otherPayment[i].amount
+    datatype: currency
+    required: false
+    default: 0
+  - If applicable, What is the amount in the award?: otherPayment[i].amount_award
+    datatype: currency
+    required: false
+    default: 753.80
+
+list collect:
+  enable: not otherPayment.has_been_gathered()
+  is final: False
+  allow delete: False
+---
+code: |
+  otherPayment[i].difference = otherPayment[i].amount_award - otherPayment[i].amount
+---
+question: Would you like to add another payment?
+yesno: otherPayment.there_is_another
 ---

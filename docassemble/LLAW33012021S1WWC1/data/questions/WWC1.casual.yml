@@ -5,4 +5,50 @@
 # refer to FUSA's way of scheduling their events - obvs will have to be modified to suit
 # our scenario
 ---
+include:
+ - WWC1.questions.yml
+---
+objects:
+ - casualHours: DAList.using(object_type=Thing, there_are_any=True, minimum_number = 2)
+---
+code: |
+  casualHours.appendObject()
+---
+question: Casual Work
+subquestion: |
+  Below is a tool that helps you organise your **weekly rates** for any **irregular hours worked**.
+  
+  You can add as many weeks as applicable by clicking on the 'Add another' button at the bottom of the screen. 
+  
+  You may also wish to delete any sections by clicking on the 'Delete' button next to the relevant section.
+
+fields:
+ - Week Starting: casualHours[i].name.text
+   datatype: date
+   required: false
+   default: 11/04/2020
+ - Hours Worked: casualHours[i].hours
+   datatype: number
+   required: false
+   default: 25
+ - Hourly Pay Rate: casualHours[i].pay
+   datatype: currency
+   required: false
+   default: 15
+ - Award Hourly Pay Rate: casualHours[i].award
+   datatype: currency
+   required: false 
+   default: 19.84
+   
+list collect:
+  enable: not casualHours.has_been_gathered()
+  is final: False
+  allow delete: False
+  
+---
+code: |  
+  casualHours[i].difference = casualHours[i].award - casualHours[i].pay
+---
+question: Would you like to add another week?
+yesno: casualHours.there_is_another
 ---
