@@ -26,19 +26,15 @@ fields:
  - Week Starting: casualHours[i].name.text
    datatype: date
    required: false
-   default: 11/04/2020
  - Hours Worked: casualHours[i].hours
    datatype: number
    required: false
-   default: 25
  - Hourly Pay Rate: casualHours[i].pay
    datatype: currency
    required: false
-   default: 15
  - Award Hourly Pay Rate: casualHours[i].award
    datatype: currency
    required: false 
-   default: 19.84
    
 list collect:
   enable: not casualHours.has_been_gathered()
