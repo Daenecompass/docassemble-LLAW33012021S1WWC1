@@ -11,9 +11,7 @@
 question: Details
 fields:
   - First Name: first_name
-    default: Anne
   - Last Name: last_name
-    default: Faulkner
   - Have you consulted an Industrial worker at WWC?: consult_WWC
     datatype: radio
     choices:
@@ -31,7 +29,6 @@ fields:
     show if:
       variable: award_known
       is: 'Yes'
-    default: Restaurant Industry Award 2020
 ---
 question: Work Status
 fields:
@@ -79,13 +76,10 @@ question: Working Hours
 fields:
   - How many hours do you work a week?: hours_week
     datatype: number
-    default: 38
   - How much do you get paid per hour?: paid_hour
     datatype: currency
-    default: 15
   - How much should you be getting paid according to your award?: award_paid_hour
     datatype: currency
-    default: 19.84
 ---
 code: |
   rtDifference = award_paid_hour - paid_hour
@@ -103,21 +97,18 @@ fields:
     show if:
       variable: paid_overtime
       is: 'Yes'
-    default: 2
   - How much do you get paid in overtime?: amount_overtime
     datatype: currency
     required: false
     show if:
       variable: paid_overtime
       is: 'Yes'
-    default: 20
   - What are the Overtime Rates according to your relevant award?: overtime_award
     datatype: currency
     required: false
     show if:
       variable: paid_overtime
       is: 'Yes'
-    default: 29.76
 terms: 
   overtime: |
      Overtime is when you work outside of the previously agreed number of hours.
@@ -152,15 +143,12 @@ subquestion: |
 fields:
   - What penalty rates are you receiving?: penRates[i].name.text
     required: false
-    default: Sundays
   - What penalty rates amount did you receive?: penRates[i].paid_rates
     datatype: currency
     required: false
-    default: 26
   - What are the penalty rates according to your relevant award?: penRates[i].penRateAward
     datatype: currency
     required: false
-    default: 29.76
       
 list collect:
   enable: not penRates.has_been_gathered()
@@ -200,13 +188,10 @@ subquestion: |
   
 fields:
   - What allowances are you receiving?: allowances[i].name.text
-    default: Special clothing allowance
   - What amount have you received?: allowances[i].amount_allowance
     datatype: currency
-    default: 30
   - What are the allowances according to your relevant award?: allowances[i].allowance_award
     datatype: currency
-    default: 45
 
 list collect:
   enable: not allowances.has_been_gathered()
@@ -246,15 +231,12 @@ subquestion: |
 fields:
   - What public holiday rates are you being paid?: pubHol[i].name.text
     required: false
-    default: Christmas Day
   - How much did you get paid for on this public holiday?: pubHol[i].paid_public_holiday_rates
     datatype: currency
     required: false
-    default: 30
   - What are the public holiday rates according to your relevant award?: pubHol[i].public_holiday_award
     datatype: currency
     required: false
-    default: 50
     
 list collect:
   enable: not pubHol.has_been_gathered()
@@ -292,7 +274,6 @@ fields:
     show if:
       variable: leave_owing
       is: 'Yes'
-    default: 1507.6
 under:
     Please note that upon end of employment, annual leave will be paid out to you and personal leave will not.
 terms:
@@ -327,15 +308,12 @@ subquestion: |
 fields:
   - Please provide information on the other type of payment: otherPayment[i].name.text
     required: false
-    default: Redundancy pay
   - What is the amount received from this other type of payment?: otherPayment[i].amount
     datatype: currency
     required: false
-    default: 0
   - If applicable, What is the amount in the award?: otherPayment[i].amount_award
     datatype: currency
     required: false
-    default: 753.80
 
 list collect:
   enable: not otherPayment.has_been_gathered()
